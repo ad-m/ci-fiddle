@@ -1,13 +1,10 @@
 language: none
 
-matrix:
-  include:
-    - env: VERSON='1.0.1'
-      env: UBUNTU_VERSION='u14'
-      env: UBUNTU_VERSION='u16'
-    - env: VERSON='2.0.0'
-      env: UBUNTU_VERSION='u14'
-      env: UBUNTU_VERSION='u16'
+env:
+  matrix:
+    - VERSION: "1.2.3"
+      env: UBUNTU_VERSION=2
+      env: UBUNTU_VERSION=1
 
 ci:
   - echo "Building CMake ${VERSION} for Ubuntu ${UBUNTU_VERSION}"
