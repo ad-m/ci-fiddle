@@ -3,8 +3,7 @@ language: none
 env:
   matrix:
     - VERSION: "1.2.3"
-      env: UBUNTU_VERSION=2
-      env: UBUNTU_VERSION=1
+      UBUNTU_VERSION: 2
 
 ci:
   - echo "Building CMake ${VERSION} for Ubuntu ${UBUNTU_VERSION}"
