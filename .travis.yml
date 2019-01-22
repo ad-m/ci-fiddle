@@ -1,13 +1,10 @@
 language: ruby
-dist: xenial
 
 env:
-matrix:
-  include:
-    - VERSION="1.2.3" UBUNTU_VERSION=2
-    - VERSION="1.2.3" UBUNTU_VERSION=3
-    - VERSION="2.0.0" UBUNTU_VERSION=2
-    - VERSION="2.0.0" UBUNTU_VERSION=3
+  - VERSION="1.2.3" UBUNTU_VERSION=2
+  - VERSION="1.2.3" UBUNTU_VERSION=3
+  - VERSION="2.0.0" UBUNTU_VERSION=2
+  - VERSION="2.0.0" UBUNTU_VERSION=3
 
 script:
   - echo "Building CMake ${VERSION} for Ubuntu ${UBUNTU_VERSION}"
