@@ -2,11 +2,10 @@ language: none
 
 env:
   matrix:
-    - VERSION: "1.2.3"
-      env:
-        - UBUNTU_VERSION='2'
-        - UBUNTU_VERSION='5'
-    - VERSION: "2.0.0"
+    - VERSION="1.2.3" UBUNTU_VERSION=2
+    - VERSION="1.2.3" UBUNTU_VERSION=3
+    - VERSION="2.0.0" UBUNTU_VERSION=2
+    - VERSION="2.0.0" UBUNTU_VERSION=3
 
 build:
   ci:
