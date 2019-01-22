@@ -1,5 +1,7 @@
-language: cpp
+language: ruby
+dist: xenial
 
+env:
 matrix:
   include:
     - VERSION="1.2.3" UBUNTU_VERSION=2
@@ -7,6 +9,5 @@ matrix:
     - VERSION="2.0.0" UBUNTU_VERSION=2
     - VERSION="2.0.0" UBUNTU_VERSION=3
 
-build:
-  ci:
-    - echo "Building CMake ${VERSION} for Ubuntu ${UBUNTU_VERSION}"
+script:
+  - echo "Building CMake ${VERSION} for Ubuntu ${UBUNTU_VERSION}"
