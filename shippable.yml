@@ -64,6 +64,6 @@ build:
   ci:
     - echo "Building CMake ${CMAKE_VERSION}"
     - >
-      for e in "${UBUNTU_VERSIONS[@]}" do
+      for e in "${UBUNTU_VERSIONS[@]}"; do
         echo "Building CMake v${CMAKE_VERSION} for Ubuntu version '${e}'";
       done
