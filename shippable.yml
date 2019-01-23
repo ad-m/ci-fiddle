@@ -6,9 +6,9 @@ env:
 
 matrix:
   include:
-    - CMAKE_VERSION: '3.13.3'
-    - CMAKE_VERSION: '3.13.2'
-    - CMAKE_VERSION: '3.13.1'
+    - CMAKE_VERSION: 3.13.3
+    - CMAKE_VERSION: 3.13.2
+    - CMAKE_VERSION: 3.13.1
     - CMAKE_VERSION: '3.13.0'
     - CMAKE_VERSION: '3.12.4'
     - CMAKE_VERSION: '3.12.3'
@@ -63,7 +63,4 @@ matrix:
 build:
   ci:
     - echo "Building CMake ${CMAKE_VERSION}"
-    - >
-      for e in "${UBUNTU_VERSIONS[@]}"; do
-        echo "Building CMake v${CMAKE_VERSION} for Ubuntu version '${e}'";
-      done
+    - for e in "${UBUNTU_VERSIONS[@]}"; do echo "Building CMake v${CMAKE_VERSION} for Ubuntu version '${e}'"; done
