@@ -2,7 +2,7 @@ language: none
 
 env:
   global:
-    - VV='1404 1604 1804'
+    - VV=( "1404" "1604" "1804" )
   matrix:
     - CMAKE_VERSION='3.13.3'
     - CMAKE_VERSION='3.13.2'
@@ -11,4 +11,4 @@ build:
   ci:
     - echo "Building CMake ${CMAKE_VERSION}"
     - echo "Ubuntu '${VV}'"
-    - for e in "${VV}"; do echo "Building CMake v${CMAKE_VERSION} for Ubuntu version '${e}'"; done
+    - for e in "${VV[@]}"; do echo "Building CMake v${CMAKE_VERSION} for Ubuntu version '${e}'"; done
