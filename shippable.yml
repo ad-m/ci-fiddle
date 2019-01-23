@@ -2,7 +2,7 @@ language: none
 
 env:
   global:
-    - UBUNTU_VERSIONS="('1404' '1604' '1804')""
+    - UBUNTU_VERSIONS="('1404' '1604' '1804')"
   matrix:
     - CMAKE_VERSION='3.13.3'
     - CMAKE_VERSION='3.13.2'
