@@ -10,5 +10,5 @@ env:
 build:
   ci:
     - echo "Building CMake ${CMAKE_VERSION}"
-    - echo "Ubuntu '${UBUNTU_VERSIONS[@]}'"
-    - for e in "${UBUNTU_VERSIONS[@]}"; do echo "Building CMake v${CMAKE_VERSION} for Ubuntu version '${e}'"; done
+    - echo "Ubuntu '${UBUNTU_VERSIONS}'"
+    - for e in "${UBUNTU_VERSIONS}"; do echo "Building CMake v${CMAKE_VERSION} for Ubuntu version '${e}'"; done
