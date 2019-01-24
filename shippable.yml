@@ -2,8 +2,8 @@ language: none
 
 env:
   matrix:
-    - CMAKE_VERSION='3.13.3'
-    - CMAKE_VERSION='3.13.2'
+    - CMAKE_VERSION: '3.13.3'
+    - CMAKE_VERSION: '3.13.2'
 
 build:
   ci:
