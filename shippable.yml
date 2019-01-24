@@ -62,3 +62,14 @@ build:
     - echo "Building CMake ${CMAKE_VERSION}"
     - echo "Ubuntu '${UBUNTU_VERSIONS[@]}'"
     - for e in "${UBUNTU_VERSIONS[@]}"; do echo "Building CMake v${CMAKE_VERSION} for Ubuntu '${e}'"; done
+
+
+integrations:
+  notifications:
+    - integrationName: email
+      type: email
+      on_success: never
+      on_failure: never
+      on_cancel: never
+      on_start: never
+      on_pull_request: never
