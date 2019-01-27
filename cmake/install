@@ -25,6 +25,7 @@ set -e
 #   - Just append PATH to .bashrc. The path is now also set in the Dockerfile.
 # Changes since v1.0
 #   - Append PATH to both .bashrc and .profile
+echo "Version: ${CMAKE_VERSION}"
 readonly VERSION=${CMAKE_VERSION}
 readonly FILENAME="cmake-${VERSION}-Linux-x86_64"
 readonly ARCHIVE_FILENAME="${FILENAME}.tar.gz"

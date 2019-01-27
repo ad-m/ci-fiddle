@@ -11,5 +11,6 @@ echo "=============================== Cleaned apt-get ==========================
 
 echo "========== Installing CMake ===================================================="
 ls -la
+echo "Version: ${CMAKE_VERSION}"
 . /uxx-cmake/cmake/install
 echo "========== Successfully installed CMake ========================================"
