@@ -1,6 +1,7 @@
 FROM drydock/u14:prod
 MAINTAINER Jeroen de Bruijn <vidavidorra@gmail.com>
 
+ARG CMAKE_VERSION
 ENV PATH="${PATH}:/usr/local/gcc-arm-none-eabi-4_9-2015q3/bin"
 
 ADD . /uxx-cmake

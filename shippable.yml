@@ -14,7 +14,7 @@ build:
     - echo "Ubuntu '${UBUNTU_VERSIONS[@]}'"
     - ls -la
     - chmod +x cmake/install .ci/install
-    - for e in "${UBUNTU_VERSIONS[@]}"; do echo "Building CMake v${CMAKE_VERSION} for Ubuntu '${e}'" && docker build -f ./ubuntu_$e.DockerFile .; done
+    - for e in "${UBUNTU_VERSIONS[@]}"; do echo "Building CMake v${CMAKE_VERSION} for Ubuntu '${e}'" && docker build --build-arg CMAKE_VERSION=$CMAKE_VERSION -f ./ubuntu_$e.DockerFile .; done
 
 
 integrations:
