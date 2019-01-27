@@ -1,5 +1,4 @@
 #!/bin/bash -e
-export CMAKE_VERSION='3.1.0'
 
 echo "================================ Clean apt-get ================================="
 apt-get clean
