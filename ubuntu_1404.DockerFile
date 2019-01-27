@@ -9,6 +9,7 @@ ADD . /uxx-cmake
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN pwd
+RUN echo "CMake version: ${CMAKE_VERSION}"
 RUN ls -la /uxx-cmake/.ci
 RUN /uxx-cmake/.ci/install
 
