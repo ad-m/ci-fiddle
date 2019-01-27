@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+echo "================================ Clean apt-get ================================="
+apt-get clean
+mv /var/lib/apt/lists /tmp
+mkdir -p /var/lib/apt/lists/partial
+apt-get clean
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+apt-get update
+echo "=============================== Cleaned apt-get ================================"
+
+echo "========== Installing CMake ===================================================="
+. /uxx-cmake/cmake/install
+echo "========== Successfully installed CMake ========================================"
