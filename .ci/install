@@ -10,5 +10,6 @@ apt-get update
 echo "=============================== Cleaned apt-get ================================"
 
 echo "========== Installing CMake ===================================================="
+ls -la
 . /uxx-cmake/cmake/install
 echo "========== Successfully installed CMake ========================================"
