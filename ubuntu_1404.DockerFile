@@ -1,4 +1,4 @@
-FROM drydock/u14:prod
+FROM drydock/u14:latest
 MAINTAINER Jeroen de Bruijn <vidavidorra@gmail.com>
 
 ARG CMAKE_VERSION
