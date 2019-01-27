@@ -13,7 +13,7 @@ build:
     - echo "Building CMake ${CMAKE_VERSION}"
     - echo "Ubuntu '${UBUNTU_VERSIONS[@]}'"
     - ls -la
-    - chmod +x ./ci-fiddle/cmake/install ./ci-fiddle/ci/install
+    - chmod +x cmake/install .ci/install
     - for e in "${UBUNTU_VERSIONS[@]}"; do echo "Building CMake v${CMAKE_VERSION} for Ubuntu '${e}'" && docker build -f ./ubuntu_$e.DockerFile .; done
 
 
