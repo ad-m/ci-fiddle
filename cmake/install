@@ -54,7 +54,7 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   mkdir "/usr/local/cmake/${cmake_version}"
   ls -la
   ls -la "./${filename}"
-  cp -r "${filename}/*" "/usr/local/cmake/${cmake_version}/"
+  cp -r "./${filename}/*" "/usr/local/cmake/${cmake_version}/"
   ls -la "/usr/local"
   ls -la "/usr/local/cmake"
   ls -la "/usr/local/cmake/${cmake_version}"
