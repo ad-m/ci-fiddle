@@ -25,18 +25,54 @@ set -e
 #   - Just append PATH to .bashrc. The path is now also set in the Dockerfile.
 # Changes since v1.0
 #   - Append PATH to both .bashrc and .profile
-echo "Version: ${CMAKE_VERSION}"
-readonly VERSION=${CMAKE_VERSION}
-readonly FILENAME="cmake-${VERSION}-Linux-x86_64"
-readonly ARCHIVE_FILENAME="${FILENAME}.tar.gz"
-readonly URL="https://github.com/Kitware/CMake/releases/download/v${VERSION}/${ARCHIVE_FILENAME}"
+# echo "Version: ${CMAKE_VERSION}"
 
+# Get the current working directory, i.e. the directory of this file. All
+# credits for this line goes to this guy https://stackoverflow.com/a/246128.
+readonly WORKING_DIRECTORY="$(
+  cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd
+)"
 
-wget -nv "${URL}"
-tar xzf "./${ARCHIVE_FILENAME}"
-ls -la "./${FILENAME}"
+# Source the versions file to 'include' the CMake version list.
+source "${WORKING_DIRECTORY}/versions"
 
-cp -R "./${FILENAME}" /usr/local/
-rm -r "./${ARCHIVE_FILENAME}" "./${FILENAME}"
+readonly BASE_URL='https://github.com/Kitware/CMake/releases/download'
 
-/usr/local/${FILENAME}/bin/cmake --version
+for cmake_version in "${CMAKE_VERSIONS[@]}"; do
+  echo "Installing CMake ${cmake_version}..."
+
+  filename="cmake-${cmake_version}-Linux-x86_64"
+  archive_filename="${filename}.tar.gz"
+  url="${BASE_URL}/v${cmake_version}/${archive_filename}"
+  # echo "I've created URL: '${url}'"
+  wget --quiet --show-progress "${url}"
+  # echo 'done'
+
+  tar -xz --file "./${archive_filename}"
+  if [[ ! -d "${filename}/bin" ]]; then
+    echo "Folder not found ${filename}/bin"
+  fi
+  if [[ ! -d "${filename}/doc" ]]; then
+    echo "Folder not found ${filename}/doc"
+  fi
+  if [[ ! -d "${filename}/man" ]]; then
+    echo "Folder not found ${filename}/man"
+  fi
+  if [[ ! -d "${filename}/share" ]]; then
+    echo "Folder not found ${filename}/share"
+  fi
+
+  "${filename}/bin/cmake" --version
+
+  rm -r "${filename}"
+  rm "${archive_filename}"
+  echo "Finished!"
+done
+
+# tar xzf "./${ARCHIVE_FILENAME}"
+# ls -la "./${FILENAME}"
+#
+# cp -R "./${FILENAME}" /usr/local/
+# rm -r "./${ARCHIVE_FILENAME}" "./${FILENAME}"
+#
+# /usr/local/${FILENAME}/bin/cmake --version
