@@ -52,12 +52,7 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   tar -xz --file "${archive_filename}"
 
   mkdir "/usr/local/cmake/${cmake_version}"
-  ls -la
-  ls -la "./${filename}"
   cp -r "./${filename}"/* "/usr/local/cmake/${cmake_version}/"
-  ls -la "/usr/local"
-  ls -la "/usr/local/cmake"
-  ls -la "/usr/local/cmake/${cmake_version}"
 
   installed_cmake_version=$(
     "/usr/local/cmake/${cmake_version}/bin/cmake" --version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
