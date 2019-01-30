@@ -53,6 +53,9 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
 
   mkdir "/usr/local/cmake/${cmake_version}"
   cp -r "${filename}/" "/usr/local/cmake/${cmake_version}/"
+  ls -la "/usr/local"
+  ls -la "/usr/local/cmake"
+  ls -la "/usr/local/cmake/${cmake_version}"
 
   installed_cmake_version=$(
     "/usr/local/cmake/${cmake_version}/bin/cmake" --version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
