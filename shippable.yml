@@ -2,17 +2,14 @@ language: none
 
 env:
   matrix:
-    - CMAKE_VERSION: 3.13.3
-    - CMAKE_VERSION: 3.1.0
+    - UBUNTU_VERSION: 1404
+    - UBUNTU_VERSION: 1604
 
 build:
   ci:
-    - UBUNTU_VERSIONS=( '1404' '1604' )
-    - echo "Building CMake ${CMAKE_VERSION}"
-    - echo "Ubuntu '${UBUNTU_VERSIONS[@]}'"
-    - wget --version
+    - wget -h
     - ls -laR
-    - chmod +x cmake/install cmake/versions .ci/install
+    # - chmod +x cmake/install cmake/versions .ci/install
     - ./cmake/install
     # - for e in "${UBUNTU_VERSIONS[@]}"; do ./docker/build "${CMAKE_VERSION}" $e "sd" "sdf"; done
 
