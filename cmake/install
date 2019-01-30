@@ -39,7 +39,7 @@ source "${WORKING_DIRECTORY}/versions"
 readonly BASE_URL='https://github.com/Kitware/CMake/releases/download'
 
 for cmake_version in "${CMAKE_VERSIONS[@]}"; do
-  echo "Installing CMake ${cmake_version}..."
+  printf("Installing CMake ${cmake_version}... ")
 
   filename="cmake-${cmake_version}-Linux-x86_64"
   archive_filename="${filename}.tar.gz"
@@ -66,14 +66,14 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
     "${filename}/bin/cmake" --version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
   )
 
-  if [[ "${installed_cmake_version}" != "${cmake_version}" ]]; then
+  if [[ "${installed_cmake_version}" == "${cmake_version}" ]]; then
     echo "Installed CMake (${installed_cmake_version}) doesn't match expected"
          "version (${cmake_version})"
   fi
 
   rm -r "${filename}"
   rm "${archive_filename}"
-  echo "Finished!"
+  echo "OK"
 done
 
 # tar xzf "./${ARCHIVE_FILENAME}"
