@@ -62,7 +62,7 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
     echo "Folder not found ${filename}/share"
   fi
 
-  "${filename}/bin/cmake" --version
+  "${filename}/bin/cmake" --version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
 
   rm -r "${filename}"
   rm "${archive_filename}"
