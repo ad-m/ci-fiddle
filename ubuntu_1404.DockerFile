@@ -12,6 +12,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 RUN pwd
 RUN echo "CMake version: ${CMAKE_VERSION}"
 RUN ls -la /uxx-cmake/.ci
+RUN chmod +x /uxx-cmake/.ci/install /uxx-cmake/.ci/build
 RUN ls -la /uxx-cmake/cmake
 RUN /uxx-cmake/.ci/install
 
