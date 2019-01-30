@@ -39,7 +39,7 @@ source "${WORKING_DIRECTORY}/versions"
 readonly BASE_URL='https://github.com/Kitware/CMake/releases/download'
 
 for cmake_version in "${CMAKE_VERSIONS[@]}"; do
-  printf("Installing CMake ${cmake_version}... ")
+  printf "Installing CMake ${cmake_version}... "
 
   filename="cmake-${cmake_version}-Linux-x86_64"
   archive_filename="${filename}.tar.gz"

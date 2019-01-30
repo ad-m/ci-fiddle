@@ -7,12 +7,7 @@ env:
 
 build:
   ci:
-    - wget -h
-    - ls -laR
-    # - chmod +x cmake/install cmake/versions .ci/install
     - ./cmake/install
-    # - for e in "${UBUNTU_VERSIONS[@]}"; do ./docker/build "${CMAKE_VERSION}" $e "sd" "sdf"; done
-
 
 integrations:
   notifications:
