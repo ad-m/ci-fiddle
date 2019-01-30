@@ -45,7 +45,7 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   archive_filename="${filename}.tar.gz"
   url="${BASE_URL}/v${cmake_version}/${archive_filename}"
   # echo "I've created URL: '${url}'"
-  wget --quiet --progress=bar "${url}"
+  wget -nv --progress=bar "${url}"
   # echo 'done'
 
   tar -xz --file "./${archive_filename}"
@@ -66,7 +66,7 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
     "${filename}/bin/cmake" --version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
   )
   echo $installed_cmake_version
-  
+
   rm -r "${filename}"
   rm "${archive_filename}"
   echo "Finished!"
