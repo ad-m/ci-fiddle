@@ -35,13 +35,12 @@ set -e
 #   None
 ########################################
 docker::build() {
-  local cmake_version="${1}"
-  local ubuntu_version="${2}"
-  local image_name="${3}"
-  local image_tag="${4}"
-  
-  docker build --build-arg CMAKE_VERSION="${cmake_version}" \
-               --file "./ubuntu_${ubuntu_version}.DockerFile" \
+  # local cmake_version="${1}"
+  local ubuntu_version="${1}"
+  local image_name="${2}"
+  local image_tag="${3}"
+
+  docker build --file "./ubuntu_${ubuntu_version}.DockerFile" \
                --tag "${image_name}:${image_tag}" \
                .
 }

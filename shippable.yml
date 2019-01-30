@@ -7,7 +7,8 @@ env:
 
 build:
   ci:
-    - ./cmake/install
+    # - ./cmake/install
+    - ./docker/build $UBUNTU_VERSION "sdfdf" "aaaaas"
 
 integrations:
   notifications:

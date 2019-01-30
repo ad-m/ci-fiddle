@@ -68,11 +68,3 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   rm "${archive_filename}"
   echo "OK"
 done
-
-# tar xzf "./${ARCHIVE_FILENAME}"
-# ls -la "./${FILENAME}"
-#
-# cp -R "./${FILENAME}" /usr/local/
-# rm -r "./${ARCHIVE_FILENAME}" "./${FILENAME}"
-#
-# /usr/local/${FILENAME}/bin/cmake --version
