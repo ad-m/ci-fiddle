@@ -10,6 +10,7 @@ build:
     - UBUNTU_VERSIONS=( '1404' '1604' )
     - echo "Building CMake ${CMAKE_VERSION}"
     - echo "Ubuntu '${UBUNTU_VERSIONS[@]}'"
+    - wget --version
     - ls -laR
     - chmod +x cmake/install cmake/versions .ci/install
     - ./cmake/install
