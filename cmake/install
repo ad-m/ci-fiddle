@@ -37,6 +37,7 @@ readonly WORKING_DIRECTORY="$(
 source "${WORKING_DIRECTORY}/versions"
 
 readonly BASE_URL='https://github.com/Kitware/CMake/releases/download'
+mkdir "/usr/local/cmake"
 
 for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   printf "Installing CMake ${cmake_version}... "
@@ -49,26 +50,18 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   # echo 'done'
 
   tar -xz --file "./${archive_filename}"
-  if [[ ! -d "${filename}/bin" ]]; then
-    echo "Folder not found ${filename}/bin"
-  fi
-  if [[ ! -d "${filename}/doc" ]]; then
-    echo "Folder not found ${filename}/doc"
-  fi
-  if [[ ! -d "${filename}/man" ]]; then
-    echo "Folder not found ${filename}/man"
-  fi
-  if [[ ! -d "${filename}/share" ]]; then
-    echo "Folder not found ${filename}/share"
-  fi
+
+  mkdir "/usr/local/cmake/${cmake_version}"
+  cp "${filename}/" "/usr/local/cmake/${cmake_version}/"
 
   installed_cmake_version=$(
-    "${filename}/bin/cmake" --version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
+    "/usr/local/cmake/${cmake_version}/bin/cmake" --version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
   )
 
-  if [[ "${installed_cmake_version}" != "${cmake_version}x" ]]; then
+  if [[ "${installed_cmake_version}" != "${cmake_version}" ]]; then
     echo "Installed CMake (${installed_cmake_version}) doesn't match expected" \
          "version (${cmake_version})"
+    exit 1
   fi
 
   rm -r "${filename}"
