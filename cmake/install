@@ -67,7 +67,7 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   )
 
   if [[ "${installed_cmake_version}" == "${cmake_version}" ]]; then
-    echo "Installed CMake (${installed_cmake_version}) doesn't match expected"
+    echo "Installed CMake (${installed_cmake_version}) doesn't match expected" \
          "version (${cmake_version})"
   fi
 
