@@ -2,13 +2,12 @@ language: none
 
 env:
   matrix:
-    - UBUNTU_VERSION: 1404
-    - UBUNTU_VERSION: 1604
+    - LINUX_VERSION: ubuntu_1404
+    - LINUX_VERSION: ubuntu_1604
 
 build:
   ci:
-    # - ./cmake/install
-    - ./docker/build $UBUNTU_VERSION "sdfdf" "aaaaas"
+    - ./docker/build $LINUX_VERSION "linux-cmake" "${linux_version}"
 
 integrations:
   notifications:

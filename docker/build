@@ -28,19 +28,18 @@ set -e
 #   None
 # Arguments:
 #   cmake_version CMake version to be installed.
-#   ubuntu_version Ubuntu version to use the DockerFile of.
+#   linux_version Linux version (e.g. ubuntu_1404) to use the DockerFile of.
 #   image_name Name of the image.
 #   image_tag Tag of the image.
 # Returns:
 #   None
 ########################################
 docker::build() {
-  # local cmake_version="${1}"
-  local ubuntu_version="${1}"
+  local linux_version="${1}"
   local image_name="${2}"
   local image_tag="${3}"
 
-  docker build --file "./ubuntu_${ubuntu_version}.DockerFile" \
+  docker build --file "./${linux_version}.DockerFile" \
                --tag "${image_name}:${image_tag}" \
                .
 }
