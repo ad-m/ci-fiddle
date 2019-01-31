@@ -11,6 +11,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 
 RUN pwd
 RUN ls -la /uxx-cmake/.ci
+RUN chmod +x /uxx-cmake/.ci/install /uxx-cmake/.ci/build
 RUN /uxx-cmake/.ci/install
 
 ENTRYPOINT ["/bin/bash"]
