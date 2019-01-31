@@ -10,7 +10,6 @@ apt-get update
 echo "=============================== Cleaned apt-get ================================"
 
 echo "========== Installing CMake ===================================================="
-ls -la
-echo "Version: ${CMAKE_VERSION}"
+chmod +x /uxx-cmake/cmake/*
 . /uxx-cmake/cmake/install
 echo "========== Successfully installed CMake ========================================"

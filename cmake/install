@@ -45,9 +45,9 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   filename="cmake-${cmake_version}-Linux-x86_64"
   archive_filename="${filename}.tar.gz"
   url="${BASE_URL}/v${cmake_version}/${archive_filename}"
-  # echo "I've created URL: '${url}'"
+
   wget -q "${url}"
-  # echo 'done'
+
 
   tar -xz --file "${archive_filename}"
 
