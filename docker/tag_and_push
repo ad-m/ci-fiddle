@@ -42,16 +42,22 @@ docker::tag_and_push() {
   local git_tag_name="${4}"
   local git_pull_request_name="${5}"
 
+  readonly PUSH_BRANCHES=( 'master' 'develop' )
+  if [[ ! ${PUSH_BRANCHES[*]} =~ "${git_branch_name}" ]]; then
+    echo "Skipping tagging and pushing of Docker image(s) for branch" \
+         "'${git_branch_name}'..."
+    return
+  fi
+
   if [[ -n "${git_pull_request_name}" ]]; then
-    printf "Skipping tagging and pushing of Docker image for PR" \
-           "'${git_pull_request_name}'..."
+    echo "Skipping tagging and pushing of Docker image for PR"
+         "'${git_pull_request_name}'...\n"
     return
   fi
 
 
   echo "${image_name} ${image_tag} ${git_branch_name} ${git_tag_name} ${git_pull_request_name}"
-  # linux-cmake ubuntu1404 develop       false
-  # linux-cmake ubuntu1404 1.7.0   1.7.0 false
+
   if [[ -z "${git_tag_name}" ]]; then
     echo "No Git tag"
   fi
