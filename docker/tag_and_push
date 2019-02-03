@@ -29,13 +29,32 @@ set -e
 # Arguments:
 #   image_name Name of the image.
 #   image_tag Tag of the image.
+#   git_branch_name
+#   git_tag_name
+#   git_pull_request_name
 # Returns:
 #   None
 ########################################
 docker::tag_and_push() {
   local image_name="${1}"
   local image_tag="${2}"
-  echo "docker push \"${image_name}:${image_tag}\""
+  local git_branch_name="${3}"
+  local git_tag_name="${4}"
+  local git_pull_request_name="${5}"
+
+  echo "${image_name} ${image_tag} ${git_branch_name} ${git_tag_name} ${git_pull_request_name}"
+
+  if [[ -z "${git_tag_name}" ]]; then
+    echo "No Git tag"
+  fi
+
+  if [[ -z "${git_pull_request_name}" ]]; then
+    echo "No Git pull-request"
+  fi
+
+  # if git_tag_name > tag latest
+
+
   # docker push "${image_name}:${image_tag}"
 }
 

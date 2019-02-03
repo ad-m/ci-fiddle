@@ -27,18 +27,18 @@ set -e
 # Globals:
 #   None
 # Arguments:
-#   linux_version Linux version (e.g. ubuntu_1404) to use the DockerFile of.
+#   docker_file Name of the dockerfile without extension.
 #   image_name Name of the image.
 #   image_tag Tag of the image.
 # Returns:
 #   None
 ########################################
 docker::build() {
-  local linux_version="${1}"
+  local docker_file="${1}"
   local image_name="${2}"
   local image_tag="${3}"
 
-  docker build --file "./${linux_version}.DockerFile" \
+  docker build --file "./${docker_file}.DockerFile" \
                --tag "${image_name}:${image_tag}" \
                .
 }
