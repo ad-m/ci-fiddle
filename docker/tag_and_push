@@ -64,9 +64,9 @@ docker::tag_and_push() {
     echo "Adding 'latest' tag "
   fi
 
-  echo "Will tag it as '${image_tag}-${git_tag_name}'"
+  echo "Will tag it as '${image_tag}-${git_branch_name}'"
   if [[ "$add_latest_tag" = 'true' ]]; then
-    echo "Will also tag it as '${image_tag}-latest'"
+    echo "Will also tag it as '${image_tag}-${git_branch_name}-latest'"
   fi
 
   # docker push "${image_name}:${image_tag}"
