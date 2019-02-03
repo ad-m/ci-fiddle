@@ -59,7 +59,7 @@ docker::tag_and_push() {
 }
 
 main() {
-  docker::push "${@}"
+  docker::tag_and_push "${@}"
 }
 
 main "${@}"
