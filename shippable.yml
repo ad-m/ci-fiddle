@@ -7,10 +7,13 @@ env:
 
 build:
   ci:
+    - ls -la ./docker
     - ./docker/build "${LINUX_VERSION}" "linux-cmake" "${LINUX_VERSION}"
 
   on_success:
     - echo "docker push"
+    - ls -la ./docker
+    - chmod +x ./docker/*
     - ./docker/tag_and_push "linux-cmake" "${LINUX_VERSION}" "${BRANCH}" "${GIT_TAG_NAME}" "${PULL_REQUEST}"
 
 integrations:
