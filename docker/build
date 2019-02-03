@@ -27,7 +27,6 @@ set -e
 # Globals:
 #   None
 # Arguments:
-#   cmake_version CMake version to be installed.
 #   linux_version Linux version (e.g. ubuntu_1404) to use the DockerFile of.
 #   image_name Name of the image.
 #   image_tag Tag of the image.

@@ -68,3 +68,6 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   rm "${archive_filename}"
   echo "OK"
 done
+
+echo "export CMAKE_BASE_PATH='/usr/local/bin'" > ~/.bashrc
+echo "source /linux-cmake/cmake/versions" > ~/.bashrc
