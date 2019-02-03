@@ -58,17 +58,16 @@ docker::tag_and_push() {
     return
   fi
 
-
-
-
-  if [[ -z "${git_tag_name}" ]]; then
-    echo "No Git tag"
+  local add_latest_tag=false
+  if [[ -n "${git_tag_name}" ]]; then
+    add_latest_tag=true
+    echo "Adding 'latest' tag "
   fi
 
-
-
-  # if git_tag_name > tag latest
-
+  echo "Will tag it as '${image_tag}-${git_tag_name}'"
+  if [[ "$add_latest_tag" = 'true' ]]; then
+    echo "Will also tag it as '${image_tag}-latest'"
+  fi
 
   # docker push "${image_name}:${image_tag}"
 }
