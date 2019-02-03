@@ -10,6 +10,6 @@ apt-get update
 echo "=============================== Cleaned apt-get ================================"
 
 echo "========== Installing CMake ===================================================="
-chmod +x /uxx-cmake/cmake/*
-. /uxx-cmake/cmake/install
+chmod +x /linux-cmake/cmake/*
+. /linux-cmake/cmake/install
 echo "========== Successfully installed CMake ========================================"
