@@ -46,7 +46,8 @@ docker::tag_and_push() {
   echo "${image_name} ${image_tag} ${git_branch_name} ${git_tag_name} ${git_pull_request_name}"
 
   readonly PUSH_BRANCHES=( 'master' 'develop' )
-  if [[ ! ${PUSH_BRANCHES[*]} =~ "${git_branch_name}" ]]; then
+  if [[ ! ${PUSH_BRANCHES[*]} =~ "${git_branch_name}" ]] && \
+     [[ -z "${git_tag_name}" ]]; then
     echo "Skipping tagging and pushing of Docker image(s) for branch" \
          "'${git_branch_name}'..."
     return
@@ -54,7 +55,7 @@ docker::tag_and_push() {
 
   if [[ "${git_pull_request_name}" != "false" ]]; then
     echo "Skipping tagging and pushing of Docker image for PR" \
-         "'${git_pull_request_name}'...\n"
+         "'${git_pull_request_name}'..."
     return
   fi
 
