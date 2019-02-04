@@ -69,5 +69,5 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   echo "OK"
 done
 
-echo "export CMAKE_BASE_PATH='/usr/local/bin'" > ~/.bashrc
-echo "source /linux-cmake/cmake/versions" > ~/.bashrc
+echo "export CMAKE_BASE_PATH='/usr/local/bin'" >> ~/.bashrc
+echo "source /linux-cmake/cmake/versions" >> ~/.bashrc
