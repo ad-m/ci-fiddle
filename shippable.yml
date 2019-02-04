@@ -27,3 +27,7 @@ integrations:
       on_cancel: never
       on_start: never
       on_pull_request: never
+
+  hub:
+    - integrationName: vv-docker-hub-integration
+      type: docker
