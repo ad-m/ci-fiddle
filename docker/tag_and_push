@@ -59,22 +59,38 @@ docker::tag_and_push() {
     return
   fi
 
-  local add_latest_tag=false
   if [[ -n "${git_tag_name}" ]]; then
-    add_latest_tag=true
-    echo "Adding 'latest' tag "
-  fi
-
-  echo "Will tag it as '${image_tag}-${git_branch_name}'"
-  docker tag "${image_name}:${image_tag}" "vidavidorra/ci-fiddle:${image_tag}-${git_branch_name}"
-  docker push "vidavidorra/ci-fiddle:${image_tag}-${git_branch_name}"
-  if [[ "$add_latest_tag" = 'true' ]]; then
-    echo "Will also tag it as '${image_tag}-latest'"
+    # Pusing git TAG...
     docker tag "${image_name}:${image_tag}" "vidavidorra/ci-fiddle:${image_tag}-${git_tag_name}"
     docker tag "${image_name}:${image_tag}" "vidavidorra/ci-fiddle:${image_tag}-latest"
     docker push "vidavidorra/ci-fiddle:${image_tag}-${git_tag_name}"
     docker push "vidavidorra/ci-fiddle:${image_tag}-latest"
+  else
+    echo "Will tag it as '${image_tag}-${git_branch_name}'"
+    docker tag "${image_name}:${image_tag}" "vidavidorra/ci-fiddle:${image_tag}-${git_branch_name}"
+    docker push "vidavidorra/ci-fiddle:${image_tag}-${git_branch_name}"
   fi
+    #
+    # local add_latest_tag=false
+    # if [[ -n "${git_tag_name}" ]]; then
+    #   add_latest_tag=true
+    #   echo "Adding 'latest' tag "
+    # fi
+    # if [[ "$add_latest_tag" = 'true' ]]; then
+    #   echo "Will also tag it as '${image_tag}-latest'"
+    #   docker tag "${image_name}:${image_tag}" "vidavidorra/ci-fiddle:${image_tag}-${git_tag_name}"
+    #   docker tag "${image_name}:${image_tag}" "vidavidorra/ci-fiddle:${image_tag}-latest"
+    #   docker push "vidavidorra/ci-fiddle:${image_tag}-${git_tag_name}"
+    #   docker push "vidavidorra/ci-fiddle:${image_tag}-latest"
+    # fi
+    #
+    #
+    #
+    #
+
+
+
+
 
 
   # docker push "${image_name}:${image_tag}"
