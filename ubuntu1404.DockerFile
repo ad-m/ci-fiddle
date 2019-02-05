@@ -6,6 +6,7 @@ ADD . /linux-cmake
 # Set debconf to non-interactive to prevent lots of debconf warnings.
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
+RUN ls -la /linux-cmake/docker/
 RUN chmod +x /linux-cmake/docker/*
 RUN /linux-cmake/docker/install
 
