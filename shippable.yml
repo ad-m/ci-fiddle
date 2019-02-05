@@ -29,5 +29,5 @@ integrations:
       on_pull_request: never
 
   hub:
-    - integrationName: vv-docker-hub-integration
+    - integrationName: docker-hub
       type: docker
