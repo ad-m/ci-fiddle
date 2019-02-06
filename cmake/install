@@ -47,6 +47,7 @@ done
 
 echo "export CMAKE_BASE_PATH='/usr/local/cmake'" >> ~/.bashrc
 echo "source /linux-cmake/cmake/versions" >> ~/.bashrc
+
 echo "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/"
 ls -la "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/bin/"
 ls -la "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/"
@@ -56,3 +57,4 @@ ls -la /usr/local/bin
 ln -s "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/bin/"* /usr/local/bin
 
 ls -la /usr/local/bin
+
