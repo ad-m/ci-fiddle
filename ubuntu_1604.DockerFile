@@ -1,15 +1,12 @@
 FROM drydock/u16:latest
 MAINTAINER Jeroen de Bruijn <vidavidorra@gmail.com>
 
-ARG CMAKE_VERSION
-ENV PATH="${PATH}:/usr/local/gcc-arm-none-eabi-4_9-2015q3/bin"
-
-ADD . /uxx-cmake
+ADD . /linux-cmake
 
 # Set debconf to non-interactive to prevent lots of debconf warnings.
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-RUN chmod +x /uxx-cmake/.ci/*
-RUN /uxx-cmake/.ci/install
+RUN chmod +x /linux-cmake/docker/*
+RUN /linux-cmake/docker/install
 
 ENTRYPOINT ["/bin/bash"]

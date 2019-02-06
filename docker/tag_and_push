@@ -1,0 +1,75 @@
+#!/bin/bash -e
+#
+# Push a Docker image to Docker Hub.
+
+################################################################################
+# Configuration
+################################################################################
+# Fail on first error
+set -e
+
+################################################################################
+# Constants
+################################################################################
+
+
+################################################################################
+# Global variables
+################################################################################
+
+
+################################################################################
+# Functions
+################################################################################
+########################################
+# Push a Docker image to Docker Hub.
+#
+# Globals:
+#   None
+# Arguments:
+#   image_name Name of the image.
+#   image_tag Tag of the image.
+#   git_branch_name
+#   git_tag_name
+#   git_pull_request_name
+# Returns:
+#   None
+########################################
+docker::tag_and_push() {
+  local image_name="${1}"
+  local image_tag="${2}"
+  local git_branch_name="${3}"
+  local git_tag_name="${4}"
+  local git_pull_request_name="${5}"
+
+  readonly PUSH_BRANCHES=( 'master' 'develop' )
+  if [[ ! ${PUSH_BRANCHES[*]} =~ "${git_branch_name}" ]] && \
+     [[ -z "${git_tag_name}" ]]; then
+    echo "Skipping tagging and pushing of Docker image(s) for branch" \
+         "'${git_branch_name}'..."
+    return
+  fi
+
+  if [[ "${git_pull_request_name}" != "false" ]]; then
+    echo "Skipping tagging and pushing of Docker image for PR" \
+         "'${git_pull_request_name}'..."
+    return
+  fi
+
+  if [[ -n "${git_tag_name}" ]]; then
+    docker tag "${image_name}:${image_tag}" "vidavidorra/linux-cmake:${image_tag}-${git_tag_name}"
+    docker tag "${image_name}:${image_tag}" "vidavidorra/linux-cmake:${image_tag}-latest"
+    docker push "vidavidorra/linux-cmake:${image_tag}-${git_tag_name}"
+    docker push "vidavidorra/linux-cmake:${image_tag}-latest"
+  else
+    echo "Will tag it as '${image_tag}-${git_branch_name}'"
+    docker tag "${image_name}:${image_tag}" "vidavidorra/linux-cmake:${image_tag}-${git_branch_name}"
+    docker push "vidavidorra/linux-cmake:${image_tag}-${git_branch_name}"
+  fi
+}
+
+main() {
+  docker::tag_and_push "${@}"
+}
+
+main "${@}"
