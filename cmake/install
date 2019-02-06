@@ -12,7 +12,8 @@ readonly WORKING_DIRECTORY="$(
 source "${WORKING_DIRECTORY}/versions"
 
 readonly BASE_URL='https://github.com/Kitware/CMake/releases/download'
-mkdir "/usr/local/cmake"
+readonly CMAKE_BASE_PATH='/usr/local/cmake'
+mkdir "${CMAKE_BASE_PATH}"
 
 for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   printf "Installing CMake ${cmake_version}... "
@@ -45,9 +46,9 @@ for cmake_version in "${CMAKE_VERSIONS[@]}"; do
   echo "OK"
 done
 
-echo "export CMAKE_BASE_PATH='/usr/local/cmake'" >> ~/.bashrc
+
+echo "export CMAKE_BASE_PATH='${CMAKE_BASE_PATH}'" >> ~/.bashrc
 echo "source /linux-cmake/cmake/versions" >> ~/.bashrc
-export CMAKE_BASE_PATH='/usr/local/cmake'
 
 echo "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/"
 ls -la "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/bin/"
