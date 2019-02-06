@@ -10,6 +10,7 @@ build:
     - ./docker/build "${LINUX_VERSION}" "linux-cmake" "${LINUX_VERSION}"
 
   on_success:
+    - chmod +x ./docker/*
     - ls -la ./docker
     - >
       ./docker/tag_and_push
