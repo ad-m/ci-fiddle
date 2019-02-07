@@ -9,7 +9,7 @@ build:
   ci:
     # - ./docker/build "${LINUX_VERSION}" "linux-cmake" "${LINUX_VERSION}"
     - echo "CI!!"
-    - exit 0
+
 
   on_success:
     - echo "hi"
