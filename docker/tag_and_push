@@ -57,14 +57,14 @@ docker::tag_and_push() {
   fi
 
   if [[ -n "${git_tag_name}" ]]; then
-    docker tag "${image_name}:${image_tag}" "vidavidorra/linux-cmake:${image_tag}-${git_tag_name}"
-    docker tag "${image_name}:${image_tag}" "vidavidorra/linux-cmake:${image_tag}-latest"
-    docker push "vidavidorra/linux-cmake:${image_tag}-${git_tag_name}"
-    docker push "vidavidorra/linux-cmake:${image_tag}-latest"
+    docker tag "${image_name}:${image_tag}" "vidavidorra/ci-fiddle:${image_tag}-${git_tag_name}"
+    docker tag "${image_name}:${image_tag}" "vidavidorra/ci-fiddle:${image_tag}-latest"
+    docker push "vidavidorra/ci-fiddle:${image_tag}-${git_tag_name}"
+    docker push "vidavidorra/ci-fiddle:${image_tag}-latest"
   else
     echo "Will tag it as '${image_tag}-${git_branch_name}'"
-    docker tag "${image_name}:${image_tag}" "vidavidorra/linux-cmake:${image_tag}-${git_branch_name}"
-    docker push "vidavidorra/linux-cmake:${image_tag}-${git_branch_name}"
+    docker tag "${image_name}:${image_tag}" "vidavidorra/ci-fiddle:${image_tag}-${git_branch_name}"
+    docker push "vidavidorra/ci-fiddle:${image_tag}-${git_branch_name}"
   fi
 }
 

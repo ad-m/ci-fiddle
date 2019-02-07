@@ -7,23 +7,26 @@ env:
 
 build:
   ci:
-    - ./docker/build "${LINUX_VERSION}" "linux-cmake" "${LINUX_VERSION}"
+    # - ./docker/build "${LINUX_VERSION}" "linux-cmake" "${LINUX_VERSION}"
+    - echo "CI!!"
 
   on_success:
-    - chmod +x ./docker/*
-    - ls -la ./docker
-    - >
-      ./docker/tag_and_push
-      "linux-cmake"
-      "${LINUX_VERSION}"
-      "${BRANCH}"
-      "${GIT_TAG_NAME}"
-      "${PULL_REQUEST}";
+    - echo "hi"
+    # - >
+    #   ./docker/tag_and_push
+    #   "linux-cmake"
+    #   "${LINUX_VERSION}"
+    #   "${BRANCH}"
+    #   "${GIT_TAG_NAME}"
+    #   "${PULL_REQUEST}";
 
 integrations:
   notifications:
     - integrationName: email
       type: email
+      recipients:
+        --last_author
+        --last_committer
       on_success: never
       on_failure: never
       on_cancel: never
