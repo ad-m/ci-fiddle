@@ -9,7 +9,7 @@ build:
   ci:
     # - ./docker/build "${LINUX_VERSION}" "linux-cmake" "${LINUX_VERSION}"
     - echo "CI!!"
-    - exit 3
+
 
 
   on_success:
@@ -28,7 +28,6 @@ integrations:
       type: email
       recipients:
         --owners
-        # --last_committer
       on_success: change
       on_failure: change
       on_cancel: never
