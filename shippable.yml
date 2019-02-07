@@ -28,8 +28,8 @@ integrations:
       recipients:
         --last_author
         --last_committer
-      on_success: never
-      on_failure: never
+      on_success: change
+      on_failure: change
       on_cancel: never
       on_start: never
       on_pull_request: never
