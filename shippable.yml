@@ -25,9 +25,7 @@ integrations:
   notifications:
     - integrationName: email
       type: email
-      recipients:
-        --last_author
-        --last_committer
+      recipients: vidavidorra@gmail.com
       on_success: change
       on_failure: change
       on_cancel: never
