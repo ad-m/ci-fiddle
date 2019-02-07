@@ -27,7 +27,8 @@ integrations:
     - integrationName: email
       type: email
       recipients:
-        --owners
+        --last_committer
+        --last_author
       on_success: change
       on_failure: change
       on_cancel: never
