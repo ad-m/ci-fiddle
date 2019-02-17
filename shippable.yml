@@ -9,9 +9,12 @@ build:
   ci:
     - ls -la /usr/local
     - pwd
+    - echo ${CMAKE_BASE_PATH}
     - cat ~/.bashrc
     - source ~/.bashrc
-    - ls /linux-cmake/
+    - ls -la /linux-cmake/
+    - cmake --version
+    - echo "${CMAKE_VERSIONS[@]}"
     - echo "${CMAKE_VERSIONS[@]}"
     - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
     - >
