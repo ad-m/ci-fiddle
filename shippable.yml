@@ -8,7 +8,7 @@ build:
 
   ci:
     - echo $NVM_DIR
-    - ls -la /usr/local
+    - ls -la /usr/local/bin
     - pwd
     - echo ${CMAKE_BASE_PATH}
     - cat ~/.bashrc
