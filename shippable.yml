@@ -7,13 +7,14 @@ build:
     pull: true
 
   ci:
-    - ll .
+    - echo $NVM_DIR
     - ls -la /usr/local
     - pwd
     - echo ${CMAKE_BASE_PATH}
     - cat ~/.bashrc
     - source ~/.bashrc
     - echo ${CMAKE_BASE_PATH}
+    - echo $NVM_DIR
     - ls -la /linux-cmake/
     - cmake --version
     - echo "${CMAKE_VERSIONS[@]}"
