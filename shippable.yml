@@ -3,7 +3,7 @@ language: none
 build:
   pre_ci_boot:
     image_name: vidavidorra/linux-cmake
-    image_tag: ubuntu1604-develop
+    image_tag: ubuntu1404-develop
     pull: true
 
   ci:
@@ -12,9 +12,11 @@ build:
     - echo ${CMAKE_BASE_PATH}
     - cat ~/.bashrc
     - source ~/.bashrc
+    - echo ${CMAKE_BASE_PATH}
     - ls -la /linux-cmake/
     - cmake --version
     - echo "${CMAKE_VERSIONS[@]}"
+    - source /linux-cmake/cmake/versions
     - echo "${CMAKE_VERSIONS[@]}"
     - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
     - >
