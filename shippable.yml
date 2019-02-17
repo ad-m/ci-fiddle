@@ -10,8 +10,7 @@ build:
     image_name: vidavidorra/linux-cmake
     image_tag: ubuntu1604-develop
     pull: true
-    env: FOO=bar
-    options: "-e HOME=/root"
+
   ci:
     - ls -la
     - echo "${CMAKE_VERSIONS[@]}"
