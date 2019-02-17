@@ -9,6 +9,7 @@ build:
   ci:
     - echo $NVM_DIR
     - ls -la /usr/local/bin
+    - cat /root/1a65bc0a-fbf2-4905-9473-777398663315.sh
     - pwd
     - echo ${CMAKE_BASE_PATH}
     - echo $0
@@ -22,7 +23,7 @@ build:
     - cat /linux-cmake/cmake/versions
     - chmod +x /linux-cmake/cmake/versions
     - . /linux-cmake/cmake/versions
-    - /bin/bash echo "${CMAKE_VERSIONS[@]}"
+    - echo "${CMAKE_VERSIONS[@]}"
     - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
     - >
       for version in "${CMAKE_VERSIONS[@]}"; do
