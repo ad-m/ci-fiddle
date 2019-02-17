@@ -11,6 +11,7 @@ build:
     - ls -la /usr/local/bin
     - pwd
     - echo ${CMAKE_BASE_PATH}
+    - echo $0
     - cat ~/.bashrc
     - . ~/.bashrc && echo ${CMAKE_BASE_PATH} && echo "${CMAKE_VERSIONS[@]}"
     - echo ${CMAKE_BASE_PATH}
