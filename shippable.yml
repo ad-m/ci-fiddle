@@ -1,10 +1,5 @@
 language: none
 
-env:
-  matrix:
-    - LINUX_VERSION: ubuntu1404
-    - LINUX_VERSION: ubuntu1604
-
 build:
   pre_ci_boot:
     image_name: vidavidorra/linux-cmake
@@ -13,6 +8,9 @@ build:
 
   ci:
     - ls -la
+    - pwd
+    - cat ~/.bashrc
+    - source ~/.bashrc
     - echo "${CMAKE_VERSIONS[@]}"
     - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
     - >
