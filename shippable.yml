@@ -22,7 +22,7 @@ build:
     - cat /linux-cmake/cmake/versions
     - chmod +x /linux-cmake/cmake/versions
     - . /linux-cmake/cmake/versions
-    - echo "${CMAKE_VERSIONS[@]}"
+    - /bin/bash echo "${CMAKE_VERSIONS[@]}"
     - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
     - >
       for version in "${CMAKE_VERSIONS[@]}"; do
