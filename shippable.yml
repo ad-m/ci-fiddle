@@ -7,10 +7,11 @@ build:
     pull: true
 
   ci:
-    - ls -la
+    - ls -la /usr/local
     - pwd
     - cat ~/.bashrc
     - source ~/.bashrc
+    - ls /linux-cmake/
     - echo "${CMAKE_VERSIONS[@]}"
     - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
     - >
