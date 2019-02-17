@@ -12,13 +12,13 @@ build:
     - pwd
     - echo ${CMAKE_BASE_PATH}
     - cat ~/.bashrc
-    - source ~/.bashrc && echo ${CMAKE_BASE_PATH} && echo "${CMAKE_VERSIONS[@]}"
+    - . ~/.bashrc && echo ${CMAKE_BASE_PATH} && echo "${CMAKE_VERSIONS[@]}"
     - echo ${CMAKE_BASE_PATH}
     - echo $NVM_DIR
     - ls -la /linux-cmake/
     - cmake --version
     - echo "${CMAKE_VERSIONS[@]}"
-    - source /linux-cmake/cmake/versions
+    - . /linux-cmake/cmake/versions
     - echo "${CMAKE_VERSIONS[@]}"
     - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
     - >
