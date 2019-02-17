@@ -19,7 +19,7 @@ build:
       for version in "${CMAKE_VERSIONS[@]}"; do
         echo "Testing CMake v${version}"
         echo "${CMAKE_BASE_PATH}-${version}" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
-      done
+      done;
 
 integrations:
   notifications:
