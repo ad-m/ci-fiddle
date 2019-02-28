@@ -43,10 +43,12 @@ readonly CMAKE_SYMLINK_PATH='/usr/local/bin'
 cmake::source_versions() {
   local versions_directory="${WORKING_DIRECTORY}/versions"
   echo "Working directory: '${WORKING_DIRECTORY}'"
-  cat "${versions_directory}"
+  # cat "${versions_directory}"
+
+  echo "thing: '$@'"
 
   echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
-  . "${versions_directory}"
+  . "${versions_directory}" "$@"
   echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
 
   if [[ -z ${CMAKE_VERSIONS} ]]; then
