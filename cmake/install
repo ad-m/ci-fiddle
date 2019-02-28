@@ -41,14 +41,8 @@ readonly CMAKE_SYMLINK_PATH='/usr/local/bin'
 ########################################
 cmake::source_versions() {
   local versions_directory="${WORKING_DIRECTORY}/versions"
-  echo "Working directory: '${WORKING_DIRECTORY}'"
-  # cat "${versions_directory}"
 
-  echo "thing: '$@'"
-
-  echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
   . "${versions_directory}"
-  echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
 
   if [[ -z ${CMAKE_VERSIONS} ]]; then
     echo "CMAKE_VERSIONS not set"
@@ -103,15 +97,8 @@ cmake::download() {
 cmake::unpack_archive() {
   local archive_path="${1}"
   local destination_path="${2}"
-  echo "Unpacking '${archive_path}'"
-  echo "Unpacking to '${destination_path}'"
-  ls -la "${destination_path}"
-  echo "calling tar"
-  tar -xz --file "${archive_path}" --directory "${destination_path}"
-  echo "after tar"
-  ls -la "${destination_path}"
 
-  echo "done"
+  tar -xz --file "${archive_path}" --directory "${destination_path}"
 }
 
 ########################################
@@ -170,16 +157,8 @@ cmake::cleanup() {
 }
 
 cmake::install() {
-  echo "cmake::install"
-  echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
   cmake::source_versions
-  echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
-
-  echo "cmake::install > cmake::source_versions"
   cmake::create_install_directory
-  echo "cmake::install > cmake::create_install_directory"
-
-  echo "CMake versions: ${CMAKE_VERSIONS[@]}"
 
   local tmp_path="$(mktemp)"
 
@@ -192,13 +171,7 @@ cmake::install() {
     url="${CMAKE_BASE_URL}/v${version}/${archive_filename}"
 
     cmake::download "${url}" "${tmp_path}"
-
-    echo "Unpacking..."
     cmake::unpack_archive "${tmp_path}/${archive_filename}" "${tmp_path}"
-    echo "wd"
-    ls -la ${WORKING_DIRECTORY}
-    echo "tmp"
-    ls -la ${tmp_path}
     cmake::pour "${tmp_path}/${filename}" \
                 "${CMAKE_INSTALL_PATH}/${version}"
     cmake::verify "${version}"
