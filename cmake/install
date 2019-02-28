@@ -159,7 +159,10 @@ cmake::cleanup() {
 
 cmake::install() {
   echo "cmake::install"
+  echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
   cmake::source_versions
+  echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
+
   echo "cmake::install > cmake::source_versions"
   cmake::create_install_directory
   echo "cmake::install > cmake::create_install_directory"
