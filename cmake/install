@@ -42,7 +42,7 @@ readonly CMAKE_SYMLINK_PATH='/usr/local/bin'
 ########################################
 cmake::source_versions() {
   local versions_directory="${WORKING_DIRECTORY}/versions"
-  . "${versions_directory}"
+  source "${versions_directory}"
 
   if [[ -z ${CMAKE_VERSIONS} ]]; then
     echo "CMAKE_VERSIONS not set"
