@@ -193,7 +193,7 @@ cmake::install() {
     cmake::download "${url}" "${TMP_PATH}"
 
     echo "Unpacking..."
-    cmake::unpack_archive "${TMP_PATH}/${archive_filename}"
+    cmake::unpack_archive "${TMP_PATH}/${archive_filename}" "${TMP_PATH}"
     echo "wd"
     ls -la ${WORKING_DIRECTORY}
     echo "tmp"
