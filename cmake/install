@@ -20,7 +20,7 @@ readonly WORKING_DIRECTORY="$(
 readonly CMAKE_BASE_URL='https://github.com/Kitware/CMake/releases/download'
 readonly CMAKE_INSTALL_PATH='/usr/local/cmake'
 readonly CMAKE_SYMLINK_PATH='/usr/local/bin'
-
+readonly TMP_PATH="$(mktemp)"
 
 ################################################################################
 # Global variables
@@ -85,20 +85,21 @@ cmake::create_install_directory() {
 ########################################
 cmake::download() {
   local url="${1}"
+  local desitination_path="${2}"
   echo "ls -la ."
   ls -la .
   echo "pwd"
   pwd
   echo "ls -la wd"
-  ls -la ${WORKING_DIRECTORY}
-  wget "${url}" --directory-prefix ${WORKING_DIRECTORY}
+  ls -la ${desitination_path}
+  wget "${url}" --directory-prefix ${desitination_path}
 
   echo "ls -la ."
   ls -la .
   echo "pwd"
   pwd
   echo "ls -la wd"
-  ls -la ${WORKING_DIRECTORY}
+  ls -la ${desitination_path}
 }
 # Saving to: '/linux-cmake/cmake/cmake-3.13.3-Linux-x86_64.tar.gz'
             # /linux-cmake/cmake/cmake-3.13.3-Linux-x86_64/*
@@ -168,8 +169,9 @@ cmake::verify() {
 }
 
 cmake::cleanup() {
-  rm -r "${WORKING_DIRECTORY}/${archive_filename}"
-  rm -r "${WORKING_DIRECTORY}/${filename}"
+  local path="${1}"
+  rm -r "${path}/${archive_filename}"
+  rm -r "${path}/${filename}"
 }
 
 cmake::install() {
@@ -192,15 +194,18 @@ cmake::install() {
     archive_filename="${filename}.tar.gz"
     url="${CMAKE_BASE_URL}/v${version}/${archive_filename}"
 
-    cmake::download "${url}"
-    cmake::unpack_archive "${WORKING_DIRECTORY}/${archive_filename}"
+    cmake::download "${url}" "${TMP_PATH}"
+    cmake::unpack_archive "${TMP_PATH}/${archive_filename}"
+    echo "wd"
     ls -la ${WORKING_DIRECTORY}
-    cmake::pour "${WORKING_DIRECTORY}/${filename}" \
+    echo "tmp"
+    ls -la ${TMP_PATH}
+    cmake::pour "${TMP_PATH}/${filename}" \
                 "${CMAKE_INSTALL_PATH}/${version}"
     cmake::verify "${version}"
     cmake::symlink "${version}"
 
-    cmake::cleanup
+    cmake::cleanup "${TMP_PATH}"
   done
 
   # echo "export CMAKE_BASE_PATH='${CMAKE_BASE_PATH}'" >> ~/.bashrc
