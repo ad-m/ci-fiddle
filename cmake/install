@@ -87,7 +87,7 @@ cmake::download() {
   local url="${1}"
   local destination_path="${2}"
 
-  wget "${url}" --directory-prefix ${destination_path}
+  wget -q "${url}" --directory-prefix ${destination_path}
 }
 # Saving to: '/linux-cmake/cmake/cmake-3.13.3-Linux-x86_64.tar.gz'
             # /linux-cmake/cmake/cmake-3.13.3-Linux-x86_64/*
