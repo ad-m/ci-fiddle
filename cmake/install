@@ -20,7 +20,6 @@ readonly WORKING_DIRECTORY="$(
 readonly CMAKE_BASE_URL='https://github.com/Kitware/CMake/releases/download'
 readonly CMAKE_INSTALL_PATH='/usr/local/cmake'
 readonly CMAKE_SYMLINK_PATH='/usr/local/bin'
-readonly TMP_PATH="$(mktemp)"
 
 ################################################################################
 # Global variables
@@ -182,6 +181,8 @@ cmake::install() {
 
   echo "CMake versions: ${CMAKE_VERSIONS[@]}"
 
+  local tmp_path="$(mktemp)"
+
   for version in "${CMAKE_VERSIONS[@]}"; do
     # Check if the version is not already installed in CMAKE_INSTALL_PATH
 
@@ -190,20 +191,20 @@ cmake::install() {
     archive_filename="${filename}.tar.gz"
     url="${CMAKE_BASE_URL}/v${version}/${archive_filename}"
 
-    cmake::download "${url}" "${TMP_PATH}"
+    cmake::download "${url}" "${tmp_path}"
 
     echo "Unpacking..."
-    cmake::unpack_archive "${TMP_PATH}/${archive_filename}" "${TMP_PATH}"
+    cmake::unpack_archive "${tmp_path}/${archive_filename}" "${tmp_path}"
     echo "wd"
     ls -la ${WORKING_DIRECTORY}
     echo "tmp"
-    ls -la ${TMP_PATH}
-    cmake::pour "${TMP_PATH}/${filename}" \
+    ls -la ${tmp_path}
+    cmake::pour "${tmp_path}/${filename}" \
                 "${CMAKE_INSTALL_PATH}/${version}"
     cmake::verify "${version}"
     cmake::symlink "${version}"
 
-    cmake::cleanup "${TMP_PATH}"
+    cmake::cleanup "${tmp_path}"
   done
 
   # echo "export CMAKE_BASE_PATH='${CMAKE_BASE_PATH}'" >> ~/.bashrc
