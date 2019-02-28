@@ -116,7 +116,6 @@ cmake::pour() {
   local source_path="${1}"
   local destination_path="${2}"
 
-  echo "Pouring '${source_path}/*' into '${destination_path}/'"
   if [[ ! -d "${destination_path}" ]]; then
     mkdir "${destination_path}"
   fi
@@ -197,7 +196,6 @@ cmake::install() {
 ########################################
 cmake::symlink() {
   local version="${1}"
-  echo "cmake::symlink ${CMAKE_INSTALL_PATH}/bin/cmake ${CMAKE_SYMLINK_PATH}/cmake-${2}"
 
   ln -sf "${CMAKE_INSTALL_PATH}/${version}/bin/cmake" \
         "${CMAKE_SYMLINK_PATH}/cmake-${version}"
