@@ -30,3 +30,7 @@ integrations:
       on_cancel: never
       on_start: never
       on_pull_request: never
+
+  hub:
+    - integrationName: docker-hub
+      type: docker
