@@ -115,8 +115,13 @@ cmake::download() {
 ########################################
 cmake::unpack_archive() {
   local archive_path="${1}"
-
+  echo "Unpacking '${archive_path}'"
+  pwd
   tar -xz --file "${archive_path}"
+  echo "ls -la"
+  ls -la
+  echo "ls -la /"
+  ls -la /
 }
 
 ########################################
@@ -169,9 +174,9 @@ cmake::verify() {
 }
 
 cmake::cleanup() {
-  local path="${1}"
-  rm -r "${path}/${archive_filename}"
-  rm -r "${path}/${filename}"
+  local cleanup_path="${1}"
+  rm -r "${cleanup_path}/${archive_filename}"
+  rm -r "${cleanup_path}/${filename}"
 }
 
 cmake::install() {
@@ -195,6 +200,8 @@ cmake::install() {
     url="${CMAKE_BASE_URL}/v${version}/${archive_filename}"
 
     cmake::download "${url}" "${TMP_PATH}"
+
+    echo "Unpacking..."
     cmake::unpack_archive "${TMP_PATH}/${archive_filename}"
     echo "wd"
     ls -la ${WORKING_DIRECTORY}
