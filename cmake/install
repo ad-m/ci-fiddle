@@ -48,7 +48,7 @@ cmake::source_versions() {
   echo "thing: '$@'"
 
   echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
-  . "${versions_directory}" "$@"
+  . "${versions_directory}"
   echo "CMAKE_VERSIONS: '${CMAKE_VERSIONS}', '${CMAKE_VERSIONS[@]}'"
 
   # if [[ -z ${CMAKE_VERSIONS} ]]; then
