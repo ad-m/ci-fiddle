@@ -105,7 +105,7 @@ cmake::unpack_archive() {
   local archive_path="${1}"
   local destination_path="${2}"
   echo "Unpacking '${archive_path}'"
-  echo "Unpacking to '${desitination_path}'"
+  echo "Unpacking to '${destination_path}'"
   ls -la "${destination_path}"
   echo "calling tar"
   tar -xz --file "${archive_path}" --directory "${destination_path}"
