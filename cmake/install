@@ -85,21 +85,9 @@ cmake::create_install_directory() {
 ########################################
 cmake::download() {
   local url="${1}"
-  local desitination_path="${2}"
-  echo "ls -la ."
-  ls -la .
-  echo "pwd"
-  pwd
-  echo "ls -la wd"
-  ls -la ${desitination_path}
-  wget "${url}" --directory-prefix ${desitination_path}
+  local destination_path="${2}"
 
-  echo "ls -la ."
-  ls -la .
-  echo "pwd"
-  pwd
-  echo "ls -la wd"
-  ls -la ${desitination_path}
+  wget "${url}" --directory-prefix ${destination_path}
 }
 # Saving to: '/linux-cmake/cmake/cmake-3.13.3-Linux-x86_64.tar.gz'
             # /linux-cmake/cmake/cmake-3.13.3-Linux-x86_64/*
@@ -117,12 +105,14 @@ cmake::unpack_archive() {
   local archive_path="${1}"
   local destination_path="${1}"
   echo "Unpacking '${archive_path}'"
-  pwd
+  echo "Unpacking to '${desitination_path}'"
+  ls -la "${destination_path}"
+  echo "calling tar"
   tar -xz --file "${archive_path}" --directory "${destination_path}"
-  echo "ls -la"
-  ls -la
-  echo "ls -la /"
-  ls -la /
+  echo "after tar"
+  ls -la "${destination_path}"
+
+  echo "done"
 }
 
 ########################################
