@@ -155,7 +155,11 @@ cmake::cleanup() {
 cmake::install() {
   echo "cmake::install"
   cmake::source_versions
+  echo "cmake::install > cmake::source_versions"
   cmake::create_install_directory
+  echo "cmake::install > cmake::create_install_directory"
+
+  echo "CMake versions: ${CMAKE_VERSIONS[@]}"
 
   for version in "${CMAKE_VERSIONS[@]}"; do
     # Check if the version is not already installed in CMAKE_INSTALL_PATH
