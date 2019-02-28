@@ -1,62 +1,209 @@
 #!/bin/bash
+#
+# Build docker image.
 
+################################################################################
+# Configuration
+################################################################################
+# Fail on first error
 set -e
 
+################################################################################
+# Constants
+################################################################################
 # Get the current working directory, i.e. the directory of this file. All
-# credits for this line goes to this guy https://stackoverflow.com/a/246128.
+# credits for this method goes to this guy https://stackoverflow.com/a/246128.
 readonly WORKING_DIRECTORY="$(
   cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd
 )"
 
+readonly CMAKE_BASE_URL='https://github.com/Kitware/CMake/releases/download'
+readonly CMAKE_INSTALL_PATH='/usr/local/cmake'
+readonly CMAKE_SYMLINK_PATH='/usr/local/bin'
+
+
+################################################################################
+# Global variables
+################################################################################
+
+
+################################################################################
+# Functions
+################################################################################
+########################################
 # Source the versions file to 'include' the CMake version list.
-source "${WORKING_DIRECTORY}/versions"
+#
+# Globals:
+#   WORKING_DIRECTORY
+# Arguments:
+#   None
+# Returns:
+#   CMAKE_VERSIONS
+########################################
+cmake::source_versions() {
+  local versions_directory="${WORKING_DIRECTORY}/versions"
+  . "${versions_directory}"
 
-readonly BASE_URL='https://github.com/Kitware/CMake/releases/download'
-readonly CMAKE_BASE_PATH='/usr/local/cmake'
-mkdir "${CMAKE_BASE_PATH}"
-
-for cmake_version in "${CMAKE_VERSIONS[@]}"; do
-  printf "Installing CMake ${cmake_version}... "
-
-  filename="cmake-${cmake_version}-Linux-x86_64"
-  archive_filename="${filename}.tar.gz"
-  url="${BASE_URL}/v${cmake_version}/${archive_filename}"
-
-  wget -q "${url}"
-
-
-  tar -xz --file "${archive_filename}"
-
-  mkdir "/usr/local/cmake/${cmake_version}"
-  cp -r "./${filename}"/* "/usr/local/cmake/${cmake_version}/"
-  ln -s "/usr/local/cmake/${cmake_version}/bin/cmake" "/usr/local/bin/cmake-${cmake_version}"
-
-  installed_cmake_version=$(
-    "/usr/local/cmake/${cmake_version}/bin/cmake" --version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
-  )
-
-  if [[ "${installed_cmake_version}" != "${cmake_version}" ]]; then
-    echo "Installed CMake (${installed_cmake_version}) doesn't match expected" \
-         "version (${cmake_version})"
+  if [[ -z ${CMAKE_VERSIONS} ]]; then
+    echo "CMAKE_VERSIONS not set"
     exit 1
   fi
+}
 
-  rm -r "${filename}"
-  rm "${archive_filename}"
-  echo "OK"
-done
+########################################
+# Create install directory for binaries.
+#
+# Globals:
+#   CMAKE_INSTALL_PATH
+# Arguments:
+#   None
+# Returns:
+#   None
+########################################
+cmake::create_install_directory() {
+  if [[ ! -d "${CMAKE_INSTALL_PATH}" ]]; then
+    mkdir "${CMAKE_INSTALL_PATH}"
+  fi
+}
+
+########################################
+# Download file from URL.
+#
+# Globals:
+#   None
+# Arguments:
+#   URL URL to download.
+# Returns:
+#   None
+########################################
+cmake::download() {
+  local url="${1}"
+
+  wget -q "${url}"
+}
+
+########################################
+# Unpack archive.
+#
+# Globals:
+#   None
+# Arguments:
+#   archive_path Path to archive to unpack.
+# Returns:
+#   None
+########################################
+cmake::unpack_archive() {
+  local archive_path="${1}"
+
+  tar -xz --file "${archive_path}"
+}
+
+########################################
+# Pour contents.
+#
+# Globals:
+#   None
+# Arguments:
+#   source_path Path to pour the contents from.
+#   destination_path Path to pour the contents in.
+# Returns:
+#   None
+########################################
+cmake::pour() {
+  local source_path="${1}"
+  local destination_path="${2}"
+
+  echo "Pouring '${source_path}/*' into '${destination_path}/'"
+  if [[ ! -d "${destination_path}" ]]; then
+    mkdir "${destination_path}"
+  fi
+
+  cp -r "${source_path}"/* "${destination_path}/"
+}
+
+########################################
+# Pour contents.
+#
+# Globals:
+#   CMAKE_INSTALL_PATH
+# Arguments:
+#   installed_path ...
+#   version Version that the installed binary should be.
+# Returns:
+#   None
+########################################
+cmake::verify() {
+  local version="${1}"
+
+  installed_version=$(
+    "${CMAKE_INSTALL_PATH}/${version}/bin/cmake" --version | \
+    grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+'
+  )
+
+  if [[ "${installed_version}" != "${version}" ]]; then
+    echo "Installed CMake (${installed_version}) doesn't match expected" \
+         "version (${version})"
+    exit 1
+  fi
+}
+
+cmake::cleanup() {
+  rm -r "${WORKING_DIRECTORY}/${archive_filename}"
+  rm -r "${WORKING_DIRECTORY}/${filename}"
+}
+
+cmake::install() {
+  echo "cmake::install"
+  cmake::source_versions
+  cmake::create_install_directory
+
+  for version in "${CMAKE_VERSIONS[@]}"; do
+    # Check if the version is not already installed in CMAKE_INSTALL_PATH
+
+    echo "CMake v${version}"
+    filename="cmake-${version}-Linux-x86_64"
+    archive_filename="${filename}.tar.gz"
+    url="${CMAKE_BASE_URL}/v${version}/${archive_filename}"
+
+    cmake::download "${url}"
+    cmake::unpack_archive "${WORKING_DIRECTORY}/${archive_filename}"
+    cmake::pour "${WORKING_DIRECTORY}/${filename}" \
+                "${CMAKE_INSTALL_PATH}/${version}"
+    cmake::verify "${version}"
+    cmake::symlink "${version}"
+
+    cmake::cleanup
+  done
+
+  # echo "export CMAKE_BASE_PATH='${CMAKE_BASE_PATH}'" >> ~/.bashrc
+  # echo "source /linux-cmake/cmake/versions" >> ~/.bashrc
+  # ln -s "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/bin/"* /usr/local/bin
+}
+
+########################################
+# Description.
+#
+# Globals:
+#   CMAKE_INSTALL_PATH
+# Arguments:
+#   a This is a.
+# Returns:
+#   None
+########################################
+cmake::symlink() {
+  local version="${1}"
+  echo "cmake::symlink ${CMAKE_INSTALL_PATH}/bin/cmake ${CMAKE_SYMLINK_PATH}/cmake-${2}"
+
+  ln -sf "${CMAKE_INSTALL_PATH}/${version}/bin/cmake" \
+        "${CMAKE_SYMLINK_PATH}/cmake-${version}"
+}
 
 
-echo "export CMAKE_BASE_PATH='${CMAKE_BASE_PATH}'" >> ~/.bashrc
-echo "source /linux-cmake/cmake/versions" >> ~/.bashrc
+main() {
+  echo "main > cmake::install"
+  cmake::install "${@}"
+  echo "main < cmake::install"
+}
 
-echo "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/"
-ls -la "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/bin/"
-ls -la "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/"
-
-
-ls -la /usr/local/bin
-ln -s "${CMAKE_BASE_PATH}/${CMAKE_VERSIONS[0]}/bin/"* /usr/local/bin
-
-ls -la /usr/local/bin
-
+echo "main"
+main "${@}"

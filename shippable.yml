@@ -1,34 +1,21 @@
 language: none
 
-build:
-  pre_ci_boot:
-    image_name: vidavidorra/linux-cmake
-    image_tag: ubuntu1404-develop
-    pull: true
+env:
+  matrix:
+    - LINUX_VERSION: ubuntu1404
+    - LINUX_VERSION: ubuntu1604
 
+build:
   ci:
-    - ls -la /usr/local/bin
-    - pwd
-    - echo ${CMAKE_BASE_PATH}
-    - echo $0
-    - cat ~/.bashrc
-    - . ~/.bashrc && echo ${CMAKE_BASE_PATH} && echo "${CMAKE_VERSIONS[@]}"
-    - echo ${CMAKE_BASE_PATH}
-    - echo $NVM_DIR
-    - ls -la /linux-cmake/
-    - cmake --version
-    - export CMAKE_VERSIONS=( '3.13.3' '3.13.2' '3.13.1' '3.13.0' '3.12.4' '3.12.3' '3.12.2' '3.12.1' '3.12.0' '3.11.4' '3.11.3' '3.11.2' '3.11.1' '3.11.0' '3.10.3' '3.10.2' '3.10.1' '3.10.0' '3.9.6' '3.9.5' '3.9.4' '3.9.3' '3.9.2' '3.9.1' '3.9.0' '3.8.2' '3.8.1' '3.8.0' '3.7.2' '3.7.1' '3.7.0' '3.6.3' '3.6.2' '3.6.1' '3.6.0' '3.5.2' '3.5.1' '3.5.0' '3.4.3' '3.4.2' '3.4.1' '3.4.0' '3.3.2' '3.3.1' '3.3.0' '3.2.3' '3.2.2' '3.2.1' '3.2.0' '3.1.3' '3.1.2' '3.1.1' '3.1.0' )
-    - echo "${CMAKE_VERSIONS[@]}"
-    - cat /linux-cmake/cmake/versions
-    - chmod +x /linux-cmake/cmake/versions
-    - . /linux-cmake/cmake/versions
-    - echo "${CMAKE_VERSIONS[@]}"
-    - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
+    - ./docker/build "${LINUX_VERSION}" "linux-cmake" "${LINUX_VERSION}"
+  on_success:
     - >
-      for version in '3.13.3' '3.13.2' '3.13.1' '3.13.0' '3.12.4' '3.12.3' '3.12.2' '3.12.1' '3.12.0' '3.11.4' '3.11.3' '3.11.2' '3.11.1' '3.11.0' '3.10.3' '3.10.2' '3.10.1' '3.10.0' '3.9.6' '3.9.5' '3.9.4' '3.9.3' '3.9.2' '3.9.1' '3.9.0' '3.8.2' '3.8.1' '3.8.0' '3.7.2' '3.7.1' '3.7.0' '3.6.3' '3.6.2' '3.6.1' '3.6.0' '3.5.2' '3.5.1' '3.5.0' '3.4.3' '3.4.2' '3.4.1' '3.4.0' '3.3.2' '3.3.1' '3.3.0' '3.2.3' '3.2.2' '3.2.1' '3.2.0'; do
-        echo "Testing CMake v${version}"
-        "/usr/local/bin/cmake-${version}" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bcmake-build-release -H./examples/regression_test
-      done;
+      ./docker/tag_and_push
+      "linux-cmake"
+      "${LINUX_VERSION}"
+      "${BRANCH}"
+      "${GIT_TAG_NAME}"
+      "${PULL_REQUEST}";
 
 integrations:
   notifications:
