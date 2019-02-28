@@ -85,8 +85,10 @@ cmake::create_install_directory() {
 ########################################
 cmake::download() {
   local url="${1}"
-
-  wget -q "${url}" -P ${WORKING_DIRECTORY}
+  ls -la .
+  pwd
+  ls -la ${WORKING_DIRECTORY}
+  wget "${url}" --directory-prefix ${WORKING_DIRECTORY}
 }
 
 ########################################
