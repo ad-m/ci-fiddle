@@ -103,7 +103,7 @@ cmake::download() {
 ########################################
 cmake::unpack_archive() {
   local archive_path="${1}"
-  local destination_path="${1}"
+  local destination_path="${2}"
   echo "Unpacking '${archive_path}'"
   echo "Unpacking to '${desitination_path}'"
   ls -la "${destination_path}"
