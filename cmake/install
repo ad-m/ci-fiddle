@@ -115,9 +115,10 @@ cmake::download() {
 ########################################
 cmake::unpack_archive() {
   local archive_path="${1}"
+  local destination_path="${1}"
   echo "Unpacking '${archive_path}'"
   pwd
-  tar -xz --file "${archive_path}"
+  tar -xz --file "${archive_path}" --directory "${destination_path}"
   echo "ls -la"
   ls -la
   echo "ls -la /"
