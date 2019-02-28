@@ -85,13 +85,19 @@ cmake::create_install_directory() {
 ########################################
 cmake::download() {
   local url="${1}"
+  echo "ls -la ."
   ls -la .
+  echo "pwd"
   pwd
+  echo "ls -la wd"
   ls -la ${WORKING_DIRECTORY}
   wget "${url}" --directory-prefix ${WORKING_DIRECTORY}
 
+  echo "ls -la ."
   ls -la .
+  echo "pwd"
   pwd
+  echo "ls -la wd"
   ls -la ${WORKING_DIRECTORY}
 }
 # Saving to: '/linux-cmake/cmake/cmake-3.13.3-Linux-x86_64.tar.gz'
