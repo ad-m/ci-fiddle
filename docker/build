@@ -43,8 +43,12 @@ docker::build() {
                .
 }
 
+# Yeahh, this will teach them
+
 main() {
   docker::build "${@}"
+
+  # here here
 }
 
 main "${@}"
