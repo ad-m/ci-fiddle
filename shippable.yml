@@ -7,13 +7,12 @@ env:
 
 build:
   ci:
-    - ./docker/build "${LINUX_VERSION}" "linux-cmake" "${LINUX_VERSION}"
-    - echo "helloo"
-
+    - mktemp
+    - ./docker/build "${LINUX_VERSION}" "ci-fiddle" "${LINUX_VERSION}"
   on_success:
     - >
       ./docker/tag_and_push
-      "linux-cmake"
+      "ci-fiddle"
       "${LINUX_VERSION}"
       "${BRANCH}"
       "${GIT_TAG_NAME}"
@@ -23,12 +22,15 @@ integrations:
   notifications:
     - integrationName: email
       type: email
-      on_success: never
-      on_failure: never
+      recipients:
+        --last_committer
+        --last_author
+      on_success: change
+      on_failure: change
       on_cancel: never
       on_start: never
       on_pull_request: never
 
   hub:
-    - integrationName: vv-docker-hub-integration
+    - integrationName: docker-hub
       type: docker
