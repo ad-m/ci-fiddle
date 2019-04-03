@@ -8,24 +8,15 @@ env:
 build:
   ci:
     - mktemp
-    - ./docker/build "${LINUX_VERSION}" "ci-fiddle" "${LINUX_VERSION}"
-  on_success:
-    - >
-      ./docker/tag_and_push
-      "ci-fiddle"
-      "${LINUX_VERSION}"
-      "${BRANCH}"
-      "${GIT_TAG_NAME}"
-      "${PULL_REQUEST}";
 
 integrations:
   notifications:
     - integrationName: email
       type: email
       recipients:
-        --last_committer
-        --last_author
-      on_success: change
+        - --last_committer
+        - --last_author
+      on_success: always
       on_failure: change
       on_cancel: never
       on_start: never
