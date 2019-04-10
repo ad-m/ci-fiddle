@@ -63,8 +63,8 @@ integrations:
     - integrationName: email
       type: email
       recipients:
-        - '--last_committer'
-        - '--last_author'
+        - --last_committer
+        - --last_author
       sendConsoleLogs: true
       on_success: change
       on_failure: change
