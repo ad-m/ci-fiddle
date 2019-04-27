@@ -8,11 +8,7 @@ env:
 build:
   ci:
     - 'echo "building formula ./Formula/${FORMULA}"'
-    - shipctl copy_file_from_prev_state "hashes.json" .
-    - cat hashes.json
-    - echo "building formula ./Formula/${FORMULA}" >> "hashes.json"
-    - cat hashes.json
-    - shipctl copy_file_to_state "hashes.json"
+    - shipctl post_resource_state_multi $JOB_NAME "VERE=${FORMULA}"
 integrations:
   notifications:
     - integrationName: email
@@ -43,6 +39,4 @@ jobs:
       - IN: ci-fiddle_runCI
       - TASK:
         - script: echo "deploying now"
-        - script: shipctl copy_file_from_prev_state "hashes.json" .
-        - script: echo "done"
-        - script: cat "hashes.json"
+        - script: shipctl get_resource_version_key runSh VERE
