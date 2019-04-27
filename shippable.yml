@@ -8,7 +8,7 @@ env:
 build:
   ci:
     - 'echo "building formula ./Formula/${FORMULA}"'
-    - shipctl post_resource_state_multi $JOB_NAME "VERE=${FORMULA}"
+    - shipctl put_resource_state res_state "HERO" "${FORMULA}"
 integrations:
   notifications:
     - integrationName: email
@@ -25,10 +25,7 @@ integrations:
 
 resources:
   - name: someParams
-    type: params
-    version:
-      params:
-        KEY1: "sdf"
+    type: state
         
 
 jobs:
@@ -39,5 +36,4 @@ jobs:
       - IN: ci-fiddle_runCI
       - TASK:
         - script: echo "deploying now"
-        - script: shipctl get_resource_version_key runSh VERE
-
+        - script: shipctl get_resource_version_key res_state "HERO"
