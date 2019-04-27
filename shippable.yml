@@ -8,7 +8,8 @@ env:
 build:
   ci:
     - 'echo "building formula ./Formula/${FORMULA}"'
-    - shipctl put_resource_state res_state "HERO" "${FORMULA}"
+    - 'cho "building formula ./Formula/${FORMULA}" >> test.txt
+    - shipctl copy_file_to_resource_state ./test.txt res_state
 integrations:
   notifications:
     - integrationName: email
@@ -27,8 +28,6 @@ resources:
   - name: res_state
     type: state
     version:
-      params:
-        HERO: "lsk"
         
 
 jobs:
@@ -45,4 +44,6 @@ jobs:
       - IN: res_state
       - TASK:
         - script: echo "deploying now"
+        - script: shipctl copy_file_from_resource_state res_state test.txt .
+        - script: ls test.txt
         - script: shipctl get_resource_version_key res_state "HERO"
