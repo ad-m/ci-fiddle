@@ -8,6 +8,11 @@ env:
 build:
   ci:
     - 'echo "building formula ./Formula/${FORMULA}"'
+    - shipctl copy_file_from_prev_state "hashes.json" .
+    - cat hashes.json
+    - echo "building formula ./Formula/${FORMULA}" >> "hashes.json"
+    - cat hashes.json
+    - shipctl copy_file_to_state "hashes.json"
 integrations:
   notifications:
     - integrationName: email
@@ -23,12 +28,12 @@ integrations:
       on_pull_request: never
 
 resources:
-  - name: ci-fiddle
-    type: gitRepo
-    integration: github
-    versionTemplate:
-      sourceName: vidavidorra/ci-fiddle
-      buildOnCommit: false
+  - name: someParams
+    type: params
+    version:
+      params:
+        KEY1: "sdf"
+        
 
 jobs:
   - name: deployChanges
@@ -37,4 +42,8 @@ jobs:
     steps:
       - IN: ci-fiddle_runCI
       - TASK:
-        - script: echo "deploying now"
+        - script: |
+        echo "deploying now"
+        shipctl copy_file_from_prev_state "hashes.json" .
+        echo "done"
+        cat hashes.json
