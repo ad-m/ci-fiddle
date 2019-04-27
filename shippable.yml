@@ -9,7 +9,7 @@ build:
   ci:
     - 'echo "building formula ./Formula/${FORMULA}"'
     - echo "building formula ./Formula/${FORMULA}" >> test.txt
-    - shipctl copy_file_to_resource_state ./test.txt res_state
+    - shipctl post_resource_state res_state "HERO" "Superman ${FORMULA}"
 integrations:
   notifications:
     - integrationName: email
@@ -43,7 +43,5 @@ jobs:
       - IN: res_state
       - TASK:
         - script: echo "deploying now"
-        - script: shipctl copy_file_from_resource_state res_state test.txt .
-        - script: ls test.txt
-        - script: echo ";;" >> test.txt
-        - script: cat test.txt
+        - script: shipctl get_resource_version_key res_state "HERO"
+
