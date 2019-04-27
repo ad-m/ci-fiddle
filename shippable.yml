@@ -28,7 +28,7 @@ resources:
     integration: github
     versionTemplate:
       sourceName: vidavidorra/ci-fiddle
-      buildOnCommit: true
+      buildOnCommit: false
 
 jobs:
   - name: deployChanges
