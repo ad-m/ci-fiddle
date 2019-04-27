@@ -43,7 +43,7 @@ jobs:
       - IN: ci-fiddle_runCI
       - TASK:
         - script: |
-        echo "deploying now"
-        shipctl copy_file_from_prev_state "hashes.json" .
-        echo "done"
-        cat hashes.json
+          echo "deploying now"
+          shipctl copy_file_from_prev_state "hashes.json" .
+          echo "done"
+          cat "hashes.json"
