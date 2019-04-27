@@ -26,6 +26,9 @@ integrations:
 resources:
   - name: res_state
     type: state
+    version:
+      params:
+        HERO: "lsk"
         
 
 jobs:
