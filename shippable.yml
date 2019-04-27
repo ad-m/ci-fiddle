@@ -8,7 +8,7 @@ env:
 build:
   ci:
     - 'echo "building formula ./Formula/${FORMULA}"'
-    - 'cho "building formula ./Formula/${FORMULA}" >> test.txt
+    - echo "building formula ./Formula/${FORMULA}" >> test.txt
     - shipctl copy_file_to_resource_state ./test.txt res_state
 integrations:
   notifications:
