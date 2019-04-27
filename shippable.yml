@@ -28,13 +28,13 @@ resources:
     integration: github
     versionTemplate:
       sourceName: vidavidorra/ci-fiddle
-      buildOnCommit: true
+      buildOnCommit: false
 
 jobs:
   - name: deployChanges
     type: runSh
     dependencyMode: strict
     steps:
-      - IN: ci-fiddle
+      - IN: ci-fiddle_runCI
       - TASK:
         - script: echo "deploying now"
