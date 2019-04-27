@@ -29,7 +29,6 @@ resources:
     type: state
     version:
         
-
 jobs:
   - name: ci-fiddle_runCI
     type: runCI
@@ -46,4 +45,5 @@ jobs:
         - script: echo "deploying now"
         - script: shipctl copy_file_from_resource_state res_state test.txt .
         - script: ls test.txt
-        - script: shipctl get_resource_version_key res_state "HERO"
+        - script: echo ";;" >> test.txt
+        - script: cat test.txt
