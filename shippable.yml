@@ -9,7 +9,7 @@ build:
   ci:
     - 'echo "building formula ./Formula/${FORMULA}"'
     - echo "building formula ./Formula/${FORMULA}" >> test.txt
-    - shipctl post_resource_state res_state "HERO" "Superman ${FORMULA}"
+    - shipctl put_resource_state_multi "myParams" "username=admin password=${FORMULA}"
 integrations:
   notifications:
     - integrationName: email
@@ -25,23 +25,28 @@ integrations:
       on_pull_request: never
 
 resources:
-  - name: res_state
-    type: state
-    version:
+  - name: myParams
+    type: params
+    versionTemplate:
+      params:
+        username: tbd
+        password: tbd
         
 jobs:
   - name: ci-fiddle_runCI
     type: runCI
     steps:
       - IN: ci-fiddle_ciRepo
-      - OUT: res_state
+      - OUT: myParams
   - name: deployChanges
     type: runSh
     dependencyMode: strict
     steps:
       - IN: ci-fiddle_runCI
-      - IN: res_state
+      - IN: myParams
       - TASK:
-        - script: echo "deploying now"
-        - script: shipctl get_resource_version_key res_state "HERO"
+        - script: 
+          - echo "deploying now"
+          - echo $username
+          - echo $password
 
