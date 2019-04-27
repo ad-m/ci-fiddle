@@ -1,4 +1,4 @@
-language: none
+# language: none
 # env:
 #   matrix:
 #     - FORMULA: cmake@3.1.0.rb
@@ -25,7 +25,7 @@ language: none
 resources:
   - name: ci-fiddle
     type: gitRepo
-    integration: myGithub
+    integration: github
     versionTemplate:
       sourceName: vidavidorra/ci-fiddle
       buildOnCommit: true
