@@ -40,3 +40,4 @@ jobs:
       - TASK:
         - script: echo "deploying now"
         - script: shipctl get_resource_version_key runSh VERE
+
