@@ -38,9 +38,3 @@ jobs:
       - IN: ci-fiddle
       - TASK:
         - script: echo "deploying now"
-
-  - name: simpleserver_runCI
-    type: runCI
-    steps:
-      - OUT: ci-fiddle
-        replicate: simpleserver_ciRepo
