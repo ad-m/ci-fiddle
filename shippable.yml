@@ -32,6 +32,11 @@ resources:
         
 
 jobs:
+  - name: ci-fiddle_runCI
+    type: runCI
+    steps:
+      - IN: ci-fiddle_ciRepo
+      - OUT: res_state
   - name: deployChanges
     type: runSh
     dependencyMode: strict
