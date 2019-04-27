@@ -1,26 +1,26 @@
 language: none
-env:
-  matrix:
-    - FORMULA: cmake@3.1.0.rb
-    - FORMULA: cmake@3.1.1.rb
-    - FORMULA: cmake@3.1.2.rb
-    - FORMULA: cmake@3.1.3.rb
-build:
-  ci:
-    - 'echo "building formula ./Formula/${FORMULA}"'
-integrations:
-  notifications:
-    - integrationName: email
-      type: email
-      recipients:
-        - '--last_committer'
-        - '--last_author'
-      sendConsoleLogs: true
-      on_success: never
-      on_failure: never
-      on_cancel: never
-      on_start: never
-      on_pull_request: never
+# env:
+#   matrix:
+#     - FORMULA: cmake@3.1.0.rb
+#     - FORMULA: cmake@3.1.1.rb
+#     - FORMULA: cmake@3.1.2.rb
+#     - FORMULA: cmake@3.1.3.rb
+# build:
+#   ci:
+#     - 'echo "building formula ./Formula/${FORMULA}"'
+# integrations:
+#   notifications:
+#     - integrationName: email
+#       type: email
+#       recipients:
+#         - '--last_committer'
+#         - '--last_author'
+#       sendConsoleLogs: true
+#       on_success: never
+#       on_failure: never
+#       on_cancel: never
+#       on_start: never
+#       on_pull_request: never
 
 resources:
   - name: ci-fiddle
