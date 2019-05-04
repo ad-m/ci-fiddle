@@ -8,7 +8,7 @@ env:
 build:
   pre_ci_boot:
     image_name: vidavidorra/docker-linux
-    image_tag: ubuntu1804-latest
+    image_tag: ubuntu1404-latest
     pull: true
   ci:
     - echo "building formula ./Formula/${FORMULA}"
