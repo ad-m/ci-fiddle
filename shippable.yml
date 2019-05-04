@@ -6,10 +6,13 @@ env:
     - FORMULA: cmake@3.1.2.rb
     - FORMULA: cmake@3.1.s.rb
 build:
+  pre_ci_boot:
+    image_name: vidavidorra/docker-linux
+    image_tag: ubuntu1804-latest
+    pull: true
   ci:
-    - 'echo "building formula ./Formula/${FORMULA}"'
-    - echo "building formula ./Formula/${FORMULA}" >> test.txt
-    - shipctl put_resource_state_multi "myParams" "username=admin password=${FORMULA}"
+    - echo "building formula ./Formula/${FORMULA}"
+    - git --version
 integrations:
   notifications:
     - integrationName: email
@@ -23,31 +26,3 @@ integrations:
       on_cancel: never
       on_start: never
       on_pull_request: never
-
-resources:
-  - name: myParams
-    type: params
-    versionTemplate:
-      params:
-        username: tbd
-        password: tbd
-        
-        
-jobs:
-  - name: ci-fiddle_runCI
-    type: runCI
-    steps:
-      - IN: ci-fiddle_ciRepo
-      - OUT: myParams
-  - name: deployChanges
-    type: runSh
-    dependencyMode: strict
-    steps:
-      - IN: ci-fiddle_runCI
-      - IN: myParams
-      - TASK:
-        - script: 
-          - echo "deploying now"
-          - echo $username
-          - echo $password
-
