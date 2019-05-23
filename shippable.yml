@@ -15,6 +15,7 @@ build:
   ci:
     - echo "building formula ./Formula/${FORMULA}"
     - git --version
+    - ls -la
     - echo $MY_SECRET
     - git status
     - npm install
