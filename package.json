@@ -3,19 +3,8 @@
   "version": "1.0.0",
   "description": "Repository to fiddle around with different CI's",
   "main": "index.js",
-  "directories": {
-    "example": "examples"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "release:prepare": "git checkout master && git pull origin master",
-    "release": "standard-version --skip.commit --skip.tag",
-    "release:as": "standard-version --skip.commit --skip.tag --release-as",
-    "release:ok": "standard-version --sign --commit-all --skip.bump --skip.changelog",
-    "release:publish": "git push --follow-tags origin master",
-    "release:develop": "git checkout develop && git pull origin develop",
-    "release:merge": "git merge $(git describe --tags --abbrev=0)",
-    "release:validate": "commitlint --from=$(git describe --tags --abbrev=0) --to=$(git rev-parse HEAD)"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "standard-version": {},
   "repository": {
@@ -30,7 +19,7 @@
   "homepage": "https://github.com/vidavidorra/ci-fiddle#readme",
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "echo Hellooo"
     }
   },
   "devDependencies": {
