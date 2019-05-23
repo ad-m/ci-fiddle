@@ -16,13 +16,15 @@ build:
     - echo "building formula ./Formula/${FORMULA}"
     - git --version
     - echo $MY_SECRET
+    - git status
+    - npm install
 integrations:
   notifications:
     - integrationName: email
       type: email
       recipients:
-        - '--last_committer'
-        - '--last_author'
+        - "--last_committer"
+        - "--last_author"
       sendConsoleLogs: true
       on_success: never
       on_failure: never
