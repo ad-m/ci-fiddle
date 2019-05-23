@@ -16,7 +16,9 @@ build:
     - ls -la
     - echo $MY_SECRET
     - git status
-    - sudo npm install
+    - npm --version
+    - node --version
+    - npm install --ignore-scripts
 integrations:
   notifications:
     - integrationName: email
