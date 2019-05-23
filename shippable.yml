@@ -16,7 +16,7 @@ build:
     - ls -la
     - echo $MY_SECRET
     - git status
-    - brew update node
+    - brew upgrade node
     - npm --version
     - node --version
     - npm install
