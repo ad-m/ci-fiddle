@@ -19,7 +19,7 @@ build:
     - brew upgrade node
     - npm --version
     - node --version
-    - npm install
+    - npm install --loglevel verbose
 integrations:
   notifications:
     - integrationName: email
