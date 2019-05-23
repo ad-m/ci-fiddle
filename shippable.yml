@@ -19,6 +19,7 @@ build:
     - brew upgrade node
     - npm --version
     - node --version
+    - rm -rf ./node_modules
     - npm install --loglevel verbose
 integrations:
   notifications:
