@@ -4,7 +4,7 @@ env:
     - secure: kllPj9ZN5vPwC5nf9ycsU4YEJLKX1Vw2Z/GUza9nN1ldQJUTNtlHztfExzPfvT/YfOhw69OTAc+V2i8Syuh7hrd90Xifxw+zhl4Pv68EZvOTsYgcU1EULmUQ0qUuiZgXFNOyYJMYPUyt1B0sLhB44BMxD3d30Jn/Hmnk+gDmDu3d3PP986evyTHOnSjpAThoit37iIK5+LIcESQ4SB1GIsFwL3gLsCbSVbR5Pv1LMR0SZXnR8LfJGGHJ+g0rT4oL7YqFkIB6+4IaihzMaCd6il71duoPMw4XqHEgWmhCotqkxSOcUbHTeqocf5rL4ZO25h5bkP3RoAisYgQylUpt/A==
   matrix:
     - FORMULA: cmake@3.1.0.rb
-    - FORMULA: cmake@3.1.1.rb
+    # - FORMULA: cmake@3.1.1.rb
 build:
   pre_ci_boot:
     image_name: vidavidorra/docker-linux
@@ -18,7 +18,7 @@ build:
     - git status
     - npm --version
     - node --version
-    - npm install --ignore-scripts
+    - npm install
 integrations:
   notifications:
     - integrationName: email
