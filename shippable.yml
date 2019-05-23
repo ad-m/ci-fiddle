@@ -5,8 +5,6 @@ env:
   matrix:
     - FORMULA: cmake@3.1.0.rb
     - FORMULA: cmake@3.1.1.rb
-    - FORMULA: cmake@3.1.2.rb
-    - FORMULA: cmake@3.1.s.rb
 build:
   pre_ci_boot:
     image_name: vidavidorra/docker-linux
@@ -18,7 +16,7 @@ build:
     - ls -la
     - echo $MY_SECRET
     - git status
-    - npm install
+    - sudo npm install
 integrations:
   notifications:
     - integrationName: email
