@@ -17,13 +17,13 @@
     "url": "https://github.com/vidavidorra/ci-fiddle/issues"
   },
   "homepage": "https://github.com/vidavidorra/ci-fiddle#readme",
+  "devDependencies": {
+    "husky": "^2.3.0",
+    "standard-version": "^5.0.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "echo Hellooo"
     }
-  },
-  "devDependencies": {
-    "husky": "^2.3.0",
-    "standard-version": "^5.0.1"
   }
 }
