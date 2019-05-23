@@ -20,7 +20,7 @@ build:
     - npm --version
     - node --version
     - rm -rf ./node_modules
-    - npm install --loglevel verbose
+    - HUSKY_SKIP_INSTALL=1 npm install --loglevel verbose
 integrations:
   notifications:
     - integrationName: email
