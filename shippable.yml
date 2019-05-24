@@ -17,6 +17,7 @@ build:
     - git status
     - brew uninstall node
     - brew install node@10
+    - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
     - npm --version
     - node --version
     - rm -rf ./node_modules
