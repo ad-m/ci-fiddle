@@ -8,22 +8,17 @@ env:
 build:
   pre_ci_boot:
     image_name: vidavidorra/docker-linux
-    image_tag: ubuntu1404-master
+    image_tag: ubuntu1604-master
     pull: true
   ci:
-    - echo "building formula ./Formula/${FORMULA}"
-    - git --version
     - ls -la
-    - rm -rf .git/hooks/
-    - git status
+    - git --version
     - brew uninstall node
     - brew install node@10
     - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
     - npm --version
     - node --version
-    - rm -rf ./node_modules
-    - rm -rf package-lock.json
-    - npm install
+    # - npm ci
     - npm run test
 integrations:
   notifications:
