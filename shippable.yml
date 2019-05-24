@@ -14,6 +14,7 @@ build:
     - echo "building formula ./Formula/${FORMULA}"
     - git --version
     - ls -la
+    - rm -rf .git/hooks/
     - git status
     - brew uninstall node
     - brew install node@10
