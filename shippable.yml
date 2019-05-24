@@ -14,9 +14,8 @@ build:
     - echo "building formula ./Formula/${FORMULA}"
     - git --version
     - ls -la
-    - echo $MY_SECRET
     - git status
-    - brew upgrade node
+    # - brew upgrade node
     - npm --version
     - node --version
     - rm -rf ./node_modules
