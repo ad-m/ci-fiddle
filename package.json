@@ -4,7 +4,7 @@
   "description": "Repository to fiddle around with different CI's",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "standard-version": {},
   "repository": {

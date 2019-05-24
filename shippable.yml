@@ -22,7 +22,8 @@ build:
     - npm --version
     - node --version
     - rm -rf ./node_modules
-    - npm ci
+    # - npm ci
+    - npm run test
 integrations:
   notifications:
     - integrationName: email
