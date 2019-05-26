@@ -8,19 +8,19 @@ env:
 build:
   pre_ci_boot:
     image_name: vidavidorra/docker-linux
-    image_tag: ubuntu1404-master
+    image_tag: ubuntu1604-master
     pull: true
   ci:
     - ls -la
     - git --version
-    - brew uninstall node
-    - brew install node@10
+    # - brew uninstall node
+    # - brew install node@10
     - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
     - npm --version
     - node --version
     - npm ci
     - npm run test
-    - npm i -D husky@3.1.0
+    - npm i -D husky@latest
 integrations:
   notifications:
     - integrationName: email
