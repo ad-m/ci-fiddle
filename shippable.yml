@@ -20,7 +20,7 @@ build:
     - node --version
     - npm ci
     - npm run test
-    - npm i -D husky@latest
+    - npm i -D husky
 integrations:
   notifications:
     - integrationName: email
