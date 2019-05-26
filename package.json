@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/vidavidorra/ci-fiddle#readme",
   "devDependencies": {
+    "is-ci": "^2.0.0",
     "standard-version": "^5.0.1"
   },
   "husky": {

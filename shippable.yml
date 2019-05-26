@@ -20,7 +20,8 @@ build:
     - node --version
     - npm ci
     - npm run test
-    - npm i -D husky@latest
+    - node ./node_modules/is-ci/bin.js && echo "This is a CI server"
+    # - npm i -D husky@latest
 integrations:
   notifications:
     - integrationName: email
