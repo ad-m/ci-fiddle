@@ -13,8 +13,8 @@ build:
   ci:
     - ls -la
     - git --version
-    # - brew uninstall node
-    # - brew install node@10
+    - brew uninstall node
+    - brew install node@10
     - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
     - npm --version
     - node --version
