@@ -19,6 +19,7 @@ build:
     - rm -f /usr/local/bin/npm /usr/local/lib/dtrace/node.d;
     # - brew install node
     - apt-get update && apt-get install nodejs npm -y
+    - ln -s /usr/bin/nodejs /usr/bin/node
     # - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
     - npm --version
     - node --version
