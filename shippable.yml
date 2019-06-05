@@ -14,7 +14,9 @@ build:
     - ls -la
     - git --version
     - node --version
-    - brew uninstall node
+    - brew uninstall --force node
+    - brew cleanup
+    - rm -f /usr/local/bin/npm /usr/local/lib/dtrace/node.d;
     # - brew install node
     - apt-get update && apt-get install nodejs npm -y
     # - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
