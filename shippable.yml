@@ -18,7 +18,7 @@ build:
     # - brew install node
     - apt-get update && apt-get install nodejs -y
     # - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
-    - npm --version
+    - /usr/bin/npm --version
     - node --version
     # - npm uninstall husky
     - npm ci
