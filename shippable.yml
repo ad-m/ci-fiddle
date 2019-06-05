@@ -15,10 +15,10 @@ build:
     - git --version
     # - brew uninstall node
     # - brew install node@10
-    - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
+    # - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
     - npm --version
     - node --version
-    - npm uninstall husky
+    # - npm uninstall husky
     - npm ci
     - npm run test
     - node ./node_modules/is-ci/bin.js && echo "This is a CI server"
