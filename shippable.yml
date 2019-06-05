@@ -22,7 +22,7 @@ build:
     - ln -s /usr/bin/nodejs /usr/bin/node
     # - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
     - npm --version
-    - node --version
+    # - node --version
     # - npm uninstall husky
     - npm ci
     - npm run test
