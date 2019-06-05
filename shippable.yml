@@ -15,7 +15,8 @@ build:
     - git --version
     - node --version
     - brew uninstall node
-    - brew install node
+    # - brew install node
+    - apt-get update && apt-get install nodejs
     # - export PATH="/home/linuxbrew/.linuxbrew/opt/node@10/bin:$PATH"
     - npm --version
     - node --version
