@@ -11,7 +11,7 @@ build:
   ci:
     - npm -v
     - npm i -g npm
-    - npm ci
+    - npm install
     - npm build
     - mkdir -p $TEST_RESULTS_DIR
     - JEST_JUNIT_OUTPUT="${TEST_RESULTS_DIR}/testresults.xml" npm test:ci
