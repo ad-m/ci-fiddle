@@ -1,17 +1,19 @@
-language: none
+language: node_js
+
+node_js:
+  - 5.12.0
+
 env:
   global:
-    - secure: kllPj9ZN5vPwC5nf9ycsU4YEJLKX1Vw2Z/GUza9nN1ldQJUTNtlHztfExzPfvT/YfOhw69OTAc+V2i8Syuh7hrd90Xifxw+zhl4Pv68EZvOTsYgcU1EULmUQ0qUuiZgXFNOyYJMYPUyt1B0sLhB44BMxD3d30Jn/Hmnk+gDmDu3d3PP986evyTHOnSjpAThoit37iIK5+LIcESQ4SB1GIsFwL3gLsCbSVbR5Pv1LMR0SZXnR8LfJGGHJ+g0rT4oL7YqFkIB6+4IaihzMaCd6il71duoPMw4XqHEgWmhCotqkxSOcUbHTeqocf5rL4ZO25h5bkP3RoAisYgQylUpt/A==
-  matrix:
-    - FORMULA: cmake@3.1.0.rb
-    # - FORMULA: cmake@3.1.1.rb
+    - TEST_RESULTS_DIR=$SHIPPABLE_REPO_DIR/shippable/testresults
+
 build:
-  pre_ci_boot:
-    image_name: vidavidorra/docker-linux
-    image_tag: ubuntu1404-master
-    pull: true
   ci:
-    - ls -la
+    - npm ci
+    - npm build
+    - mkdir -p $TEST_RESULTS_DIR
+    - JEST_JUNIT_OUTPUT="${TEST_RESULTS_DIR}/testresults.xml" npm test:ci
+
 integrations:
   notifications:
     - integrationName: email

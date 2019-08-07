@@ -1,7 +1,8 @@
 module.exports = {
-  preset: 'ts-jest',
-  roots: ['<rootDir>/src'],
+  preset: "ts-jest",
+  reporters: ["default", "jest-junit"],
+  roots: ["<rootDir>/src"],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-  },
+    "^.+\\.tsx?$": "ts-jest"
+  }
 };

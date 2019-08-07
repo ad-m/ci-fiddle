@@ -77,7 +77,7 @@ describe("Glob", (): void => {
       const expectedFiles = [
         "test/stuff.ts",
         "test/butterfly.ts",
-        // 'cat.ts',
+        "cat.ts",
         // 'duck.js',
         "frog"
       ];
