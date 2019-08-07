@@ -9,6 +9,7 @@ env:
 
 build:
   ci:
+    - npm install
     - npm -v
     - npm build
     - mkdir -p $TEST_RESULTS_DIR
