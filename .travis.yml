@@ -1,10 +1,6 @@
-language: ruby
+language: node_js
 
-env:
-  - VERSION="1.2.3" UBUNTU_VERSION=2
-  - VERSION="1.2.3" UBUNTU_VERSION=3
-  - VERSION="2.0.0" UBUNTU_VERSION=2
-  - VERSION="2.0.0" UBUNTU_VERSION=3
-
+before_script:
+  - npm i -D
 script:
-  - echo "Building CMake ${VERSION} for Ubuntu ${UBUNTU_VERSION}"
+  - npm ci
