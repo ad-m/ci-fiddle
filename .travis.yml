@@ -1,17 +1,16 @@
-dist: bionic
+# dist: bionic
 
 language: node_js
 node_js:
-  - "12.5"
+  - "12.8.0"
 
 script:
+  - node --version
+  - npm --version
   - npm ci
   - npm run ci:commitlint
-  - where commitlint-travis || which commitlint-travis
-  - npm run build
-  - npm run test
 
 notifications:
   email:
-    on_success: never
-    on_failure: never
+    on_success: change
+    on_failure: change
