@@ -6,6 +6,7 @@ node_js:
 
 script:
   - commitlint-travis
+  - where commitlint-travis || which commitlint-travis
   - npm run build
   - npm run test
 
