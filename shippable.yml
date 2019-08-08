@@ -9,6 +9,7 @@ env:
 
 build:
   ci:
+    - node --version
     - npm install
     - npm -v
     - npm build
