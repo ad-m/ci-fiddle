@@ -12,7 +12,7 @@ build:
   ci:
     - node --version
     - npm --version
-    - npm install
+    - npm ci
     - npm build
     - npm run test
     - mkdir -p $TEST_RESULTS_DIR
