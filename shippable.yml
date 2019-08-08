@@ -10,7 +10,7 @@ env:
 build:
   ci:
     - node --version
-    - npm ci
+    - npm install
     - npm -v
     - npm build
     - npm run test
