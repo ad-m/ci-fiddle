@@ -1,5 +1,5 @@
 language: node_js
-dist: xenial
+# dist: xenial
 
 node_js:
   - "12.8.0"
@@ -10,12 +10,8 @@ env:
 
 build:
   ci:
-    - node --version
-    - npm --version
     - npm ci
-    - npm run ci:commitlint
     - npm build
-    - npm run test
     - mkdir -p $TEST_RESULTS_DIR
     - JEST_JUNIT_OUTPUT="${TEST_RESULTS_DIR}/testresults.xml" npm run test:ci
 
