@@ -13,7 +13,7 @@ build:
     - node --version
     - npm --version
     - npm ci
-    - commitlint-travis
+    - npm run commitlint-travis
     - npm build
     - npm run test
     - mkdir -p $TEST_RESULTS_DIR
