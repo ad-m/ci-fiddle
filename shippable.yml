@@ -2,7 +2,7 @@ language: node_js
 dist: xenial
 
 node_js:
-  - '5.12.0'
+  - '10.16.2'
 
 env:
   global:
@@ -11,8 +11,8 @@ env:
 build:
   ci:
     - node --version
+    - npm --version
     - npm install
-    - npm -v
     - npm build
     - npm run test
     - mkdir -p $TEST_RESULTS_DIR
