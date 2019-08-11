@@ -13,7 +13,9 @@ build:
     - npm run build
     - mkdir -p $TEST_RESULTS_DIR
     - mkdir -p ${CODE_COVERAGE_DIR}
-    - JEST_JUNIT_OUTPUT="${TEST_RESULTS_DIR}/tests.xml" npm run test:ci -- --coverageDirectory "${CODE_COVERAGE_DIR}"
+    - >
+      JEST_JUNIT_OUTPUT="${TEST_RESULTS_DIR}/tests.xml" npm run test:ci
+      -- --coverageDirectory "${CODE_COVERAGE_DIR}"
 
 integrations:
   notifications:
