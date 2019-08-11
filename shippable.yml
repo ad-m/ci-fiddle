@@ -4,6 +4,7 @@ node_js:
 
 env:
   global:
+    - secure: d1qFLFXB9bhE4XOZC1BUl5/BMlbcDp+yD6rYIgpExSenkTAjheWfOgCTKEamPgZduwjklRScevr2ZEpkDKbDQe4wTuQgVDqQauCMr+KY3vJs6ws2+mOBRoQgs5nyM1E3E52z3aQrZaXD/ySBNY8GxLzsDGcgob6ptBzIW2zsP6DavEmJbY3vRJn11lXuox+1PMd+p3IaHYBtXwShWj33//408a/YoQs31quAl43gZszF+fax/dgZHvSHBOkn8Q8yIYnmmkH8Lyj7RRmONVdKhA8gKT2AciMeN6D7kkR1byR+4XJKpX6PEWOOtp+Z18jz1ZAaZjZMDgpXWTTyySXTHw==
     - TEST_RESULTS_DIR="$SHIPPABLE_REPO_DIR/shippable/testresults"
     - CODE_COVERAGE_DIR="${SHIPPABLE_REPO_DIR}/shippable/codecoverage"
 
@@ -16,6 +17,7 @@ build:
     - >
       JEST_JUNIT_OUTPUT="${TEST_RESULTS_DIR}/tests.xml" npm run test:ci
       -- --coverageDirectory "${CODE_COVERAGE_DIR}"
+    - ./node_modules/.bin/codecov
 
 integrations:
   notifications:
