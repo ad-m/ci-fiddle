@@ -10,6 +10,7 @@ env:
 
 build:
   ci:
+    - pwd
     - npm ci
     - npm run build
     - mkdir -p "${TEST_RESULTS_DIR}"
