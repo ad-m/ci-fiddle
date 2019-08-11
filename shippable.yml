@@ -11,6 +11,7 @@ env:
 build:
   ci:
     - pwd
+    - echo $TRAVIS_BUILD_DIR
     - npm ci
     - npm run build
     - mkdir -p "${TEST_RESULTS_DIR}"
