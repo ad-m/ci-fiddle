@@ -18,6 +18,7 @@
     "test:ci": "jest --ci --reporters=default --reporters=jest-junit --coverage --coverageReporters=text --coverageReporters=cobertura",
     "test:coverage": "jest --coverage --coverageDirectory=./coverage --coverageReporters=text --coverageReporters=lcov",
     "test:staged": "jest --passWithNoTests --findRelatedTests $(git diff --staged --name-only)",
+    "codecov": "codecov",
     "ci:commitlint": "commitlint-travis"
   },
   "bin": {
