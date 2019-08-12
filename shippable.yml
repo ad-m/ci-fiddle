@@ -20,7 +20,7 @@ build:
     - >
       JEST_JUNIT_OUTPUT="${TEST_RESULTS_DIR}/tests.xml" npm run test:ci
       -- --coverageDirectory "${CODE_COVERAGE_DIR}"
-    - ./node_modules/.bin/codecov
+    - TRAVIS_BUILD_DIR="${SHIPPABLE_BUILD_DIR}" ./node_modules/.bin/codecov
 
 integrations:
   notifications:
