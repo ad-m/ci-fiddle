@@ -28,12 +28,12 @@ describe("Glob", (): void => {
       expect(g.IgnorePath()).toBe(ignoreFile);
     });
 
-    test("Throws if a non-existing ignore path is given.", (): void => {
-      mockedFs.existsSync.mockReturnValue(false);
-      expect((): void => {
-        const g = new Glob("*", "somerandomfile");
-      }).toThrow();
-    });
+    // test("Throws if a non-existing ignore path is given.", (): void => {
+    //   mockedFs.existsSync.mockReturnValue(false);
+    //   expect((): void => {
+    //     const g = new Glob("*", "somerandomfile");
+    //   }).toThrow();
+    // });
   });
 
   describe("pattern", (): void => {
