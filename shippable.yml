@@ -21,7 +21,6 @@ integrations:
       recipients:
         - "--last_committer"
         - "--last_author"
-      sendConsoleLogs: true
       on_success: always
       on_failure: always
       on_cancel: never
