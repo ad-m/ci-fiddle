@@ -16,7 +16,7 @@ build:
     - echo $SHIPPABLE_BUILD_DIR
     - npm run shippable:is-diff
     - >
-      if [[ "$(npm run shippable:is-diff)" = "diff" ]]; then
+      if [[ "$(npm run shippable:is-diff)" == "diff" ]]; then
         echo "Building this part"
       else
         echo "Nothing changed..."
