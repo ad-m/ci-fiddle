@@ -17,7 +17,6 @@ build:
     - npm run shippable:d
     - thing="$(npm run shippable:d)"
     - echo "Thing ${thing}"
-    - build="${"
     - >
       if [[ "$(./.ci/test.sh $SHIPPABLE_COMMIT_RANGE)" == "true" ]]; then
         echo "Building this part"
