@@ -15,6 +15,9 @@ build:
     - echo $TRAVIS_BUILD_DIR
     - echo $SHIPPABLE_BUILD_DIR
     - npm run shippable:is-diff
+    - npm run shippable:d
+    - thing="$(shippable:d)"
+    - echo "Thing ${thing}"
     - >
       if [[ $(npm run shippable:is-diff) == "diff" ]]; then
         echo "Building this part"
