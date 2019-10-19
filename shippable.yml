@@ -10,17 +10,8 @@ env:
 build:
   ci:
     - npm ci
-    - echo $SHIPPABLE_COMMIT_RANGE
-    - echo $SHIPPABLE_COMMIT_RANGE | cut -c 1-7
     - >
       if [[ "$(./.ci/test.sh $SHIPPABLE_COMMIT_RANGE)" == "true" ]]; then
-        echo "Building this part"
-      else
-        echo "Nothing changed..."
-      fi
-    - echo "Byeee"
-    - >
-      if [[ "$(./.ci/test.sh "${SHIPPABLE_COMMIT_RANGE}")" == "true" ]]; then
         echo "Building this part"
       else
         echo "Nothing changed..."
