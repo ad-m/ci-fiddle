@@ -21,7 +21,7 @@
     "codecov": "codecov",
     "ci:commitlint": "commitlint-travis",
     "shippable:d": "echo $SHIPPABLE_COMMIT_RANGE",
-    "shippable:is-diff": "run-if-diff --since \"$(echo $SHIPPABLE_COMMIT_RANGE | cut -c 1-7)\" --file '(docker|src)/*' echo diff"
+    "ci:files-changed": "exit-if-diff --file '(docker|src)/*' --since"
   },
   "bin": {
     "global-linters": "dist/bin/global-linters.js"

@@ -18,8 +18,9 @@ build:
     - npm run shippable:d
     - thing="$(npm run shippable:d)"
     - echo "Thing ${thing}"
+    - build="${"
     - >
-      if [[ $(npm run shippable:is-diff) == "diff" ]]; then
+      if [[ "$(./.ci/test.sh)" == "true" ]]; then
         echo "Building this part"
       else
         echo "Nothing changed..."
