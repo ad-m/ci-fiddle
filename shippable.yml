@@ -14,7 +14,13 @@ build:
     - echo $SHIPPABLE_COMMIT_RANGE | cut -c 1-7
     - echo $TRAVIS_BUILD_DIR
     - echo $SHIPPABLE_BUILD_DIR
-    - exit 1
+    - >
+      if [[ "$(npm run shippable:is-diff)" = "diff" ]]; then
+        echo "Building this part"
+      else
+        echo "Nothing changed..."
+      fi
+    - echo "Byeee"
 
 integrations:
   notifications:
