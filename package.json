@@ -20,7 +20,7 @@
     "test:staged": "jest --passWithNoTests --findRelatedTests $(git diff --staged --name-only)",
     "codecov": "codecov",
     "ci:commitlint": "commitlint-travis",
-    "shippable:is-diff": "run-if-diff --since \"$(echo $SHIPPABLE_COMMIT_RANGE | cut -c 1-7)\" --file '(docker|src)/*' --echo diff"
+    "shippable:is-diff": "run-if-diff --since \"$(echo $SHIPPABLE_COMMIT_RANGE | cut -c 1-7)\" --file '(docker|src)/*' echo diff"
   },
   "bin": {
     "global-linters": "dist/bin/global-linters.js"
