@@ -9,7 +9,7 @@ env:
 
 build:
   ci:
-    - pwd
+    - npm ci
     - echo $SHIPPABLE_COMMIT_RANGE
     - echo $SHIPPABLE_COMMIT_RANGE | cut -c 1-7
     - echo $TRAVIS_BUILD_DIR
@@ -21,6 +21,7 @@ build:
         echo "Nothing changed..."
       fi
     - echo "Byeee"
+    - npm run shippable:is-diff
 
 integrations:
   notifications:
