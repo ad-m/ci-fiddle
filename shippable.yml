@@ -12,11 +12,6 @@ build:
     - npm ci
     - echo $SHIPPABLE_COMMIT_RANGE
     - echo $SHIPPABLE_COMMIT_RANGE | cut -c 1-7
-    - echo $TRAVIS_BUILD_DIR
-    - echo $SHIPPABLE_BUILD_DIR
-    - npm run shippable:d
-    - thing="$(npm run shippable:d)"
-    - echo "Thing ${thing}"
     - >
       if [[ "$(./.ci/test.sh $SHIPPABLE_COMMIT_RANGE)" == "true" ]]; then
         echo "Building this part"
@@ -24,7 +19,12 @@ build:
         echo "Nothing changed..."
       fi
     - echo "Byeee"
-    - npm run shippable:is-diff
+    - >
+      if [[ "$(./.ci/test.sh "${SHIPPABLE_COMMIT_RANGE}")" == "true" ]]; then
+        echo "Building this part"
+      else
+        echo "Nothing changed..."
+      fi
 
 integrations:
   notifications:
