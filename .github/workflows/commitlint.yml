@@ -9,3 +9,18 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: wagoid/commitlint-github-action@v1.2.2
+  lint-js:
+    runs-on: ubuntu-latest
+    steps:
+      run: |
+        date
+        npm ci
+        npm run lint
+  build:
+    needs: [lint, lint-js]
+    runs-on: ubuntu-latest
+    steps:
+      run: |
+        date
+        npm ci
+        npm run build
