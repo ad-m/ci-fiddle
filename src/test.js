@@ -1,3 +1,3 @@
 const core = require("@actions/core");
 
-core.setOutput("needs_build", true);
+core.setOutput("needs_build", false);
