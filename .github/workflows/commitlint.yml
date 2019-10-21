@@ -18,6 +18,7 @@ jobs:
           date
           npm ci
           npm run lint
+          exit 10
   build:
     needs: [lint, lint-js]
     runs-on: ubuntu-latest
