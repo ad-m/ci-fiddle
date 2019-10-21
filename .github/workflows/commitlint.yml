@@ -12,6 +12,7 @@ jobs:
   lint-js:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Lint source code
         run: |
           date
@@ -21,6 +22,7 @@ jobs:
     needs: [lint, lint-js]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Build
         run: |
           date
