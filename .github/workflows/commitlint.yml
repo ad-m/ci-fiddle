@@ -10,8 +10,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: wagoid/commitlint-github-action@v1.2.2
   lint-js:
-    container:
-      image: vidavidorra/docker-linux:ubuntu1804-master
+    container: vidavidorra/docker-linux:ubuntu1804-master
     steps:
       - uses: actions/checkout@v1
       - name: Install & build
