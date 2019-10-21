@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Install
+      - name: Install & build
         run: |
           npm ci
+          npm run build
       - name: Check build is needed
         run: npm run testjs
         id: build_needed
