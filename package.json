@@ -22,7 +22,7 @@
     "ci:commitlint": "commitlint-travis",
     "shippable:d": "echo $SHIPPABLE_COMMIT_RANGE",
     "ci:files-changed": "exit-if-diff --file '(docker|src)/*' --since",
-    "testjs": "node src/test"
+    "testjs": "node dist/src/test"
   },
   "bin": {
     "global-linters": "dist/bin/global-linters.js"
