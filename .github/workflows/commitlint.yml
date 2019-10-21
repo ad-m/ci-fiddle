@@ -12,15 +12,17 @@ jobs:
   lint-js:
     runs-on: ubuntu-latest
     steps:
-      run: |
-        date
-        npm ci
-        npm run lint
+      - name: Lint source code
+        run: |
+          date
+          npm ci
+          npm run lint
   build:
     needs: [lint, lint-js]
     runs-on: ubuntu-latest
     steps:
-      run: |
-        date
-        npm ci
-        npm run build
+      - name: Build
+        run: |
+          date
+          npm ci
+          npm run build
