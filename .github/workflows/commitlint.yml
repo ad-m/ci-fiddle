@@ -16,7 +16,6 @@ jobs:
       - name: Install
         run: |
           npm ci
-          npm run lint
       - name: Check build is needed
         run: npm run testjs
         id: build_needed
