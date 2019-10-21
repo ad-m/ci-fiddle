@@ -1,3 +1,3 @@
 import * as core from "@actions/core";
 
-core.setOutput("needs_build", "true");
+core.setOutput("needs_build", "false");
