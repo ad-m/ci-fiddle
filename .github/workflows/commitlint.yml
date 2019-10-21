@@ -10,28 +10,16 @@ jobs:
       - uses: actions/checkout@v1
       - uses: wagoid/commitlint-github-action@v1.2.2
   lint-js:
-    runs-on: ubuntu-latest
+    container:
+      image: vidavidorra/docker-linux:ubuntu1804-master
     steps:
       - uses: actions/checkout@v1
       - name: Install & build
         run: |
           npm ci
           npm run build
-      - name: Check build is needed
-        run: npm run testjs
-        id: build_needed
-      - name: Build thing
-        if: steps.build_needed.outputs.needs_build == 'true'
+      - name: Check versions
         run: |
-          echo "Yay, we're building this shit!"
-          npm run build
-  build:
-    needs: [lint, lint-js]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Build
-        run: |
-          date
-          npm ci
-          npm run build
+          brew --version
+          gcc --version
+          which gcc
