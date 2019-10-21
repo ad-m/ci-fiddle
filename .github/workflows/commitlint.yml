@@ -21,7 +21,7 @@ jobs:
         run: npm run testjs
         id: build_needed
       - name: Build thing
-        if: steps.build_needed.outputs.needs_build == 'false'
+        if: steps.build_needed.outputs.needs_build == 'true'
         run: |
           echo "Yay, we're building this shit!"
           npm run build
