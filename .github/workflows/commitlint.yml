@@ -13,12 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Lint source code
+      - name: Install
         run: |
-          date
           npm ci
           npm run lint
-          exit 10
+      - name: Check build is needed
+        run: npm run testjs
+        id: build_needed
+      - name: Build thing
+        if: ${{ steps.build_needed.outputs.needs_build }}
+        run: |
+          echo "Yay, we're building this shit!"
+          npm run build
   build:
     needs: [lint, lint-js]
     runs-on: ubuntu-latest

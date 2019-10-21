@@ -21,7 +21,8 @@
     "codecov": "codecov",
     "ci:commitlint": "commitlint-travis",
     "shippable:d": "echo $SHIPPABLE_COMMIT_RANGE",
-    "ci:files-changed": "exit-if-diff --file '(docker|src)/*' --since"
+    "ci:files-changed": "exit-if-diff --file '(docker|src)/*' --since",
+    "testjs": "node src/test"
   },
   "bin": {
     "global-linters": "dist/bin/global-linters.js"
@@ -64,6 +65,7 @@
     }
   },
   "devDependencies": {
+    "@actions/core": "^1.2.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@commitlint/travis-cli": "^8.1.0",
