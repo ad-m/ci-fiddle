@@ -18,4 +18,4 @@ jobs:
           npm ci
           npm run build
           echo "Building formula $GITHUB_SHA"
-          echo "COmmit 1"
+          echo "COmmit 2"
