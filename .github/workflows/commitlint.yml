@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: wagoid/commitlint-github-action@v1.2.2
-jobs:
   lint-js:
     runs-on: ubuntu-latest
     steps:
