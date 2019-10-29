@@ -9,6 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: wagoid/commitlint-github-action@v1.2.2
+jobs:
   lint-js:
     runs-on: ubuntu-latest
     steps:
@@ -17,4 +18,12 @@ jobs:
         run: |
           npm ci
           npm run build
-          echo "Building formula ${GITHUB_SHA}"
+          echo "Building formula ${GITHUB_SHA}" > test.txt
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ./test.txt
+          git commit -m "chore: add thingy"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
