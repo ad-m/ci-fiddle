@@ -17,5 +17,5 @@ jobs:
         run: |
           npm ci
           npm run build
-          echo "Building formula ${{ GITHUB_SHA }}"
+          echo "Building formula $GITHUB_SHA"
           echo "Byee"
