@@ -15,8 +15,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install & build
         run: |
-          npm ci
-          npm run build
           echo "Building formula ${GITHUB_SHA}" > test.txt
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
