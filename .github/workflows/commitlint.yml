@@ -1,26 +1,11 @@
-name: Commitlint
-on: [push]
+name: Lint commit messages
+on: push
 
 jobs:
-  lint:
+  commitlint:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v1
       - uses: wagoid/commitlint-github-action@v1.2.2
-  lint-js:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Install & build
-        run: |
-          echo "Building formula '${GITHUB_SHA}'" > test.txt
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add ./test.txt
-          git commit -m "chore: add thingy"
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.5.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
