@@ -9,3 +9,4 @@ jobs:
         run: |
           echo "Before ${{ github.event.before }}"
           echo "Head ${{ github.event.head }}"
+          echo "Size ${{ github.event.size }}"
