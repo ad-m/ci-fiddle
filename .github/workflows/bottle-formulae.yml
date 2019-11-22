@@ -7,6 +7,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: Build
         run: |
-          echo "Head ${{ github.event.head }}"
+          cat ${GITHUB_EVENT_PATH}
+          echo "Head ${{ github.sha }}"
           echo "Before ${{ github.event.before }}"
           echo "Size ${{ github.event.size }}"
