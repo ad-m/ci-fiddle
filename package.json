@@ -1,6 +1,6 @@
 {
   "name": "homebrew-yard",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Collection of Homebrew formulae",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
     }
   },
   "standard-version": {
-    "message": "chore(release): %v [ci release]",
+    "message": "chore(release): %s [ci release]",
     "scripts": {
       "prerelease": "if [[ \"$(git rev-parse --abbrev-ref HEAD)\" != \"master\" ]]; then exit -1; fi",
       "precommit": "git add package.json package-lock.json"
