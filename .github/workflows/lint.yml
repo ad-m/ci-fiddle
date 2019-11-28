@@ -9,5 +9,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - run: npm ci
-      - run: npm run lint
+      - name: Setup node
+        run: npm ci
+      - name: Lint
+        run: npm run lint
