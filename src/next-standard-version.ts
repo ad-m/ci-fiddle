@@ -38,6 +38,7 @@ export function nextStandardVersion(
         });
 
         if (!nextVersion) {
+          console.log('byeee');
           reject('Could not get a valid next version from standard-version');
         }
       })
