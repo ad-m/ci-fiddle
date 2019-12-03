@@ -5,8 +5,9 @@ on:
       - master
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
+    if: startsWith(github.event.commits[0].message, 'chore(release): trigger release process [ci release]')
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -16,16 +17,16 @@ jobs:
           node-version: '12.x'
       - name: Release (major)
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
-        run: npm run release:ci -- --release-as major
+        run: npm run release-ci -- --release-as major
       - name: Release (minor)
         if: endsWith(github.event.commits[0].message, '[ci release][minor]')
-        run: npm run release:ci -- --release-as minor
+        run: npm run release-ci -- --release-as minor
       - name: Release (patch)
         if: endsWith(github.event.commits[0].message, '[ci release][patch]')
-        run: npm run release:ci -- --release-as patch
+        run: npm run release-ci -- --release-as patch
       - name: Release
         if: endsWith(github.event.commits[0].message, '[ci release]')
-        run: npm run release:ci
+        run: npm run release-ci
       - name: Publish
         run: echo 'Publish this version!'
         # chore(release): trigger release process [ci release]
