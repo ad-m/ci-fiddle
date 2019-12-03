@@ -7,7 +7,8 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: "startsWith(github.event.commits[0].message, 'chore(release): trigger release process [ci release]')"
+    if: "!startsWith(github.event.commits[0].message, 'chore(release): trigger release process [ci release]')"
+    run: exit 1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -36,3 +37,9 @@ jobs:
       - name: Publish
         run: echo 'Publish this version!'
         # chore(release): trigger release process [ci release]
+  prevent_failed_status:
+    name: Prevent failed status when skipped
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prevent failed status when skipped
+        run: echo "Run this job to prevent the workflow status from showing as failed when all other jobs are skipped."
