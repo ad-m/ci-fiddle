@@ -40,6 +40,8 @@ jobs:
     name: Prevent failed status when skipped
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Prevent failed status when skipped
         run: |
           echo "Run this job to prevent the workflow status from showing as failed when all other jobs are skipped."
