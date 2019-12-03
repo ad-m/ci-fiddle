@@ -45,4 +45,4 @@ jobs:
       - name: Prevent failed status when skipped
         run: |
           echo "Run this job to prevent the workflow status from showing as failed when all other jobs are skipped."
-          git rev-parse --abbrev-ref HEAD
+          git rev-parse --abbrev-ref=loose HEAD
