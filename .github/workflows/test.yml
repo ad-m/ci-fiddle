@@ -21,7 +21,7 @@ jobs:
         if: endsWith(github.event.commits[0].message, '[ci release][patch]')
         run: npm run release:ci -- --release-as patch
       - name: Release
-        if: endsWith(github.event.commits[0].message, '[ci release]')"`
+        if: endsWith(github.event.commits[0].message, '[ci release]')
         run: npm run release:ci
       - name: Publish
         run: echo 'Publish this version!'
