@@ -47,5 +47,5 @@ jobs:
           echo "Run this job to prevent the workflow status from showing as failed when all other jobs are skipped."
           echo "building SHA '${GITHUB_SHA}'"
           git --version
-          echo "THe banch is $(git name-rev --name-only HEAD)"
-          git name-rev --name-only HEAD
+          echo "THe banch is $(git branch --show-current)"
+          git branch --show-current
