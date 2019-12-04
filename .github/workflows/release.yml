@@ -34,7 +34,6 @@ jobs:
         run: npm run release-ci
       - name: Publish
         run: echo 'Publish this version!'
-        # chore(release): trigger release process [ci release]
   prevent_failed_status:
     name: Prevent failed status when skipped
     runs-on: ubuntu-latest
