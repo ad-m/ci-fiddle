@@ -36,6 +36,14 @@ jobs:
       - name: Release
         if: endsWith(github.event.commits[0].message, '[ci release]')
         run: npm run release-ci
+      - name: Build artifacts
+        run: |
+          echo 'Build whatever artifacts the project has'
+      - name: Push release
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
       - name: Publish
         run: echo 'Publish this version!'
   prevent_failed_status:
