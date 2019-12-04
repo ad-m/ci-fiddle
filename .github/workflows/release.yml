@@ -37,7 +37,7 @@ jobs:
         if: endsWith(github.event.commits[0].message, '[ci release]')
         run: npx --no-install standard-version
       - name: Fix commit author
-        run: git commit --ammend --no-edit --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+        run: git commit --amend --no-edit --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
       - name: Build artifacts
         run: |
           echo 'Build whatever artifacts the project has'
@@ -52,8 +52,6 @@ jobs:
     name: Prevent failed status when skipped
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
       - name: Prevent failed status when skipped
         run: |
           echo "Run this job to prevent the workflow status from showing as failed when all other jobs are skipped."
