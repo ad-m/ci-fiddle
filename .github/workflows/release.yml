@@ -22,20 +22,22 @@ jobs:
         run: npm ci
       - name: Setup Git user
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.name "GitHub"
+          git config --local user.email "noreply@github.com"
       - name: Release as major
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
-        run: npm run release-ci -- --release-as major
+        run: npx --no-install standard-version --release-as major
       - name: Release as minor
         if: endsWith(github.event.commits[0].message, '[ci release][minor]')
-        run: npm run release-ci -- --release-as minor
+        run: npx --no-install standard-version --release-as minor
       - name: Release as patch
         if: endsWith(github.event.commits[0].message, '[ci release][patch]')
-        run: npm run release-ci -- --release-as patch
+        run: npx --no-install standard-version --release-as patch
       - name: Release
         if: endsWith(github.event.commits[0].message, '[ci release]')
-        run: npm run release-ci
+        run: npx --no-install standard-version
+      - name: Fix commit author
+        run: git commit --ammend --no-edit --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
       - name: Build artifacts
         run: |
           echo 'Build whatever artifacts the project has'
@@ -55,7 +57,3 @@ jobs:
       - name: Prevent failed status when skipped
         run: |
           echo "Run this job to prevent the workflow status from showing as failed when all other jobs are skipped."
-          echo "building SHA '${GITHUB_SHA}'"
-          git --version
-          echo "THe banch is $(git branch --show-current)"
-          git branch --show-current
