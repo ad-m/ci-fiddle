@@ -1,9 +1,8 @@
-name: Test
+name: Release
 on:
   push:
     branches:
       - master
-
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -21,13 +20,13 @@ jobs:
           node-version: '12.x'
       - name: Install project
         run: npm ci
-      - name: Release (major)
+      - name: Release as major
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
         run: npm run release-ci -- --release-as major
-      - name: Release (minor)
+      - name: Release as minor
         if: endsWith(github.event.commits[0].message, '[ci release][minor]')
         run: npm run release-ci -- --release-as minor
-      - name: Release (patch)
+      - name: Release as patch
         if: endsWith(github.event.commits[0].message, '[ci release][patch]')
         run: npm run release-ci -- --release-as patch
       - name: Release
