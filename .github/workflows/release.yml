@@ -20,6 +20,10 @@ jobs:
           node-version: '12.x'
       - name: Install project
         run: npm ci
+      - name: Setup Git user
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
       - name: Release as major
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
         run: npm run release-ci -- --release-as major
