@@ -16,7 +16,7 @@
     "format:default": "prettier --write \"**/*.{js,jsx,vue,ts,css,less,scss,html,htm,json,md,markdown,yml,yaml}\"",
     "format-file:default": "prettier --write",
     "release:changelog": "standard-version --dry-run",
-    "release": "git commit --allow-empty -m \"chore(release): trigger release process [ci release]\" && git push",
+    "release": "standard-version --dry-run && git commit --allow-empty -m \"chore(release): trigger release process [ci release]\" && git push",
     "build": "tsc",
     "test": "jest --coverage --coverageReporters=text --coverageReporters=lcov",
     "test:ci": "jest --ci --coverage --coverageReporters=text --coverageReporters=cobertura",

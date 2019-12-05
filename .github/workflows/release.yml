@@ -9,7 +9,7 @@ jobs:
     if: "startsWith(github.event.commits[0].message, 'chore(release): trigger release process [ci release]')"
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2-beta
       - name: Setup node
         uses: actions/setup-node@v1
         with:
@@ -36,6 +36,8 @@ jobs:
       - name: Release
         if: endsWith(github.event.commits[0].message, '[ci release]')
         run: |
+          git status
+          git branch
           npx --no-install standard-version
           git status
           git log
