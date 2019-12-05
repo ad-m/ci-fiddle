@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [40.3.0](https://github.com/vidavidorra/template/compare/v40.2.2...v40.3.0) (2019-12-05)
+
+### Features
+
+- sh clean ([a8838f6](https://github.com/vidavidorra/template/commit/a8838f6d91bfdea8a18db629c80682ff958a3d88))
+- sh clean ([26810f9](https://github.com/vidavidorra/template/commit/26810f98bda259830b15e31f9857b00d60be76b7))
+
 ### [40.2.2](https://github.com/vidavidorra/template/compare/v40.2.1...v40.2.2) (2019-12-05)
 
 ### [40.2.1](https://github.com/vidavidorra/template/compare/v40.2.0...v40.2.1) (2019-12-05)
