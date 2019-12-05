@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [40.2.1](https://github.com/vidavidorra/template/compare/v40.2.0...v40.2.1) (2019-12-05)
+
+### Bug Fixes
+
+- fetch tagsdf ([6f3c600](https://github.com/vidavidorra/template/commit/6f3c6005fcf8af22262b24a78c1f8f8993c79f67))
+
 ## 40.2.0 (2019-12-05)
 
 ### Features
