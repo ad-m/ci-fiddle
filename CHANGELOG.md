@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [40.0.5](https://github.com/vidavidorra/template/compare/v40.0.0...v40.0.5) (2019-12-05)
+
+### Bug Fixes
+
+- no version ([d66a6e7](https://github.com/vidavidorra/template/commit/d66a6e7))
+
 ### 40.0.4 (2019-12-05)
 
 ### 40.0.3 (2019-12-05)
