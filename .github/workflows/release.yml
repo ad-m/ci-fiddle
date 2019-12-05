@@ -24,8 +24,8 @@ jobs:
         run: npm ci
       - name: Setup Git user
         run: |
-          git config --local user.name "GitHub"
-          git config --local user.email "noreply@github.com"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Release as major
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
         run: npx --no-install standard-version --release-as major
@@ -38,24 +38,14 @@ jobs:
       - name: Release
         if: endsWith(github.event.commits[0].message, '[ci release]')
         run: |
-          git status
-          git branch
           npx --no-install standard-version
           git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --stat'
-          git tag --list
         shell: bash
-      - name: Fix commit author
-        run: |
-          git tag --list
-          git log
-          git status
-          # git commit --amend --no-edit --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
       - name: Build artifacts
         run: |
           echo 'Build whatever artifacts the project has'
           git tag --list
-          git status
-          git log
+          git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --stat'
       - name: Push release
         uses: ad-m/github-push-action@master
         with:
