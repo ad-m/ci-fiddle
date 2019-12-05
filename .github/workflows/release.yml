@@ -12,6 +12,7 @@ jobs:
         uses: actions/checkout@v2-beta
         with:
           fetch-depth: 0
+        run: git fetch --tags
       - name: Setup node
         uses: actions/setup-node@v1
         with:
