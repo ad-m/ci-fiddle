@@ -39,8 +39,7 @@ jobs:
           git status
           git branch
           npx --no-install standard-version
-          git status
-          git log
+          git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --stat'
           git tag --list
         shell: bash
       - name: Fix commit author
@@ -56,10 +55,9 @@ jobs:
           git status
           git log
       - name: Push release
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v0.5.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
       - name: Publish
         run: echo 'Publish this version!'
   prevent_failed_status:
