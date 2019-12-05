@@ -40,6 +40,7 @@ jobs:
           git status
           git log
           git tag --list
+        shell: bash
       - name: Fix commit author
         run: |
           git tag --list
