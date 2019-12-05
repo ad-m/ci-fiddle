@@ -12,21 +12,18 @@ jobs:
         uses: actions/checkout@v2-beta
         with:
           fetch-depth: 0
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
+      - name: Fetch tags
+        run: git fetch --tags
+      - name: Setup Git user
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
       - name: Install project
         run: npm ci
-      - name: Setup Git user
-        run: |
-          git fetch --tags
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Release as major
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
         run: npx --no-install standard-version --release-as major
@@ -45,7 +42,6 @@ jobs:
       - name: Build artifacts
         run: |
           echo 'Build whatever artifacts the project has'
-          git tag --list
           git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --stat'
       - name: Push release
         uses: ad-m/github-push-action@master
