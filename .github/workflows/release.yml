@@ -46,7 +46,9 @@ jobs:
       - name: Fix commit author
         run: |
           git tag --list
-          git commit --amend --no-edit --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+          git log
+          git status
+          # git commit --amend --no-edit --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
       - name: Build artifacts
         run: |
           echo 'Build whatever artifacts the project has'
