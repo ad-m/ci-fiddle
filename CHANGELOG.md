@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [42.1.0](https://github.com/vidavidorra/template/compare/v42.0.0...v42.1.0) (2019-12-06)
+
+### Features
+
+- change release ([993ad1b](https://github.com/vidavidorra/template/commit/993ad1b41aecafd869884a4c2623dd881fbe93e0))
+
+### Bug Fixes
+
+- workflow. ([89cd444](https://github.com/vidavidorra/template/commit/89cd4443a411abf0a5efa66560dafc6993c9801f))
+
 ## 42.0.0 (2019-12-06)
 
 ### ⚠ BREAKING CHANGES
