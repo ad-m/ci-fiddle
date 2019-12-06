@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Fetch tags
-        run: git log
+        run: git fetch --tags
       - name: Setup Git user
         run: |
           git config --local user.name "github-actions[bot]"
@@ -36,9 +36,8 @@ jobs:
       - name: Release
         if: endsWith(github.event.commits[0].message, '[ci release]')
         run: npx --no-install standard-version
-      - name: Build artifacts
-        run: |
-          echo 'Build whatever artifacts the project has'
+      - name: Build (artifacts)
+        run: npm run build
       - name: Push release
         uses: ad-m/github-push-action@master
         with:
