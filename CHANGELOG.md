@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [40.3.1](https://github.com/vidavidorra/template/compare/v40.3.0...v40.3.1) (2019-12-06)
+
+### Bug Fixes
+
+- dghjkl;;iuio ([eecd180](https://github.com/vidavidorra/template/commit/eecd1801cb1e218f9eda2969f2573c5e87a79dbf))
+- exit 2 ([79063d2](https://github.com/vidavidorra/template/commit/79063d280de6d04cfa2b259af5f4845f2ab55e18))
+- sh exit code ([2b83dee](https://github.com/vidavidorra/template/commit/2b83dee33e4be70654e543e21680ebbc840f7425))
+
 ## [40.3.0](https://github.com/vidavidorra/template/compare/v40.2.2...v40.3.0) (2019-12-05)
 
 ### Features
