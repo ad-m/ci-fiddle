@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [41.0.0](https://github.com/vidavidorra/template/compare/v40.3.1...v41.0.0) (2019-12-06)
+
+### ⚠ BREAKING CHANGES
+
+- this will not be pretty.
+
+### Features
+
+- cleanup this project ([ff72108](https://github.com/vidavidorra/template/commit/ff721083cb3d8d5c6cdcba92045a8b05bb363ed6))
+
 ### [40.3.1](https://github.com/vidavidorra/template/compare/v40.3.0...v40.3.1) (2019-12-06)
 
 ### Bug Fixes
