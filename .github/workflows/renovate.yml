@@ -1,0 +1,23 @@
+name: Release
+on:
+  push:
+    branches:
+      - master
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    container:
+      image: vidavidorra/docker-linux:ubuntu1804-master
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      volumes:
+        - src:/mnt/test
+    steps:
+      - name: Upload
+        run: |
+          echo 'hello'
+          pwd
+          ls -la
+          ls -la /mnt/test
