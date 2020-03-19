@@ -13,6 +13,8 @@ fi
 
 cp "${CONFIGURATION_PATH}" '/usr/src/app/config.js'
 
+cd /usr/src/app || { echo "ERROR: Couldn't cd to /usr/src/app" 1>&2; exit 1; }
+
 # Run Renovate.
 #
 # This mimics the original entrypoint of the renovate/renovate Docker container.
