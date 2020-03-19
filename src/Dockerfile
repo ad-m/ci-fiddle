@@ -10,13 +10,7 @@
 # FROM node:10-slim
 FROM node:slim
 
-# Labels for GitHub to read your action
-LABEL "com.github.actions.name"="WebPageTestAction"
-LABEL "com.github.actions.description"="Print webPagetest.org results"
-# Here all of the available icons: https://feathericons.com/
-LABEL "com.github.actions.icon"="zap"
-# And all of the available colors: https://developer.github.com/actions/creating-github-actions/creating-a-docker-container/#label
-LABEL "com.github.actions.color"="gray-dark"
+COPY entrypoint.sh /entrypoint.sh
 
 # Run `node /entrypoint.js`
 ENTRYPOINT ["/entrypoint.sh"]
