@@ -3,7 +3,7 @@ description: 'Print webPagetest.org results as commit comment'
 author: 'JCofman'
 runs:
   using: 'docker'
-  image: 'src/action.Dockerfile'
+  image: 'src/Dockerfile'
 branding:
   icon: 'zap'
   color: 'gray-dark'

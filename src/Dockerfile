@@ -18,14 +18,5 @@ LABEL "com.github.actions.icon"="zap"
 # And all of the available colors: https://developer.github.com/actions/creating-github-actions/creating-a-docker-container/#label
 LABEL "com.github.actions.color"="gray-dark"
 
-# Copy the package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies
-RUN npm ci
-
-# Copy the rest of your action's code
-COPY . .
-
 # Run `node /entrypoint.js`
-ENTRYPOINT ["node", "/entrypoint.js"]
+ENTRYPOINT ["/entrypoint.sh"]
