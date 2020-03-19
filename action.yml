@@ -1,15 +1,9 @@
-name: 'Self-Hosted Renovate'
-description: 'GitHub Action to run self-hosted Renovate.'
-author: 'Jeroen de Bruijn'
-inputs:
-  configurationFile:
-    description: 'Renovate configuration file'
-    required: false
-    default: 'src/config.js'
+name: "WebPageTest Action"
+description: "Print webPagetest.org results as commit comment"
+author: "JCofman"
 runs:
-  using: 'docker'
-  image: DockerFile
-
+  using: "docker"
+  image: "Dockerfile"
 branding:
-  icon: file-text
-  color: gray-dark
+  icon: "zap"
+  color: "gray-dark"
