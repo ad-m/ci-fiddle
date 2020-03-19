@@ -9,5 +9,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'src/action.DockerFile'
-  args:
-    - ${{ inputs.configurationFile }}
