@@ -11,11 +11,18 @@ if [[ ! -f "${CONFIGURATION_PATH}" ]]; then
   exit 1
 fi
 
+echo 'config:'
+cat /usr/src/app/config.js
+
 cp "${CONFIGURATION_PATH}" '/usr/src/app/config.js'
 
 cat "${CONFIGURATION_PATH}"
 
 ls -la /usr/src/app
+
+cat /usr/src/app/config.js
+
+
 
 # Run Renovate.
 #
@@ -23,4 +30,4 @@ ls -la /usr/src/app
 # See the following link for this entrypoint in the renovate/renovate Docker
 # container.
 # https://github.com/renovatebot/renovate/blob/19.175.3/Dockerfile#L220
-RENOVATE_TOKEN="${TOKEN}" node /usr/src/app/dist/renovate.js
+RENOVATE_TOKEN="${TOKEN}" node /usr/src/app/dist/renovate.js -- --logLevel debug
