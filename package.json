@@ -1,32 +1,45 @@
 {
-  "name": "webpagetestaction",
-  "version": "1.0.0",
-  "description": "github action which prints webpagetest results",
-  "main": "index.js",
+  "name": "github-action-renovate",
+  "version": "0.1.0",
+  "description": "GitHub Action to run Renovate self-hosted.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --ignore-path .prettierignore --ext .ts,.tsx,.js,.jsx,.json .",
+    "lint-file": "eslint --ignore-path .prettierignore",
+    "format": "concurrently \"npm:format:default\"",
+    "format:default": "prettier --write \"**/*.{js,jsx,vue,ts,css,less,scss,html,htm,json,md,markdown,yml,yaml}\"",
+    "format-file:default": "prettier --write",
+    "release:changelog": "standard-version --dry-run --skip.commit=true --skip.tag=true",
+    "release:commit": "git commit --allow-empty -m \"chore(release): trigger release process [ci release]\"",
+    "release:message": "chalk -t \"Run {green.bold git push} to publish the release or {red.bold git reset HEAD^} to undo the release.\"",
+    "release": "run-s release:changelog release:commit release:message"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JCofman/webPagetestAction.git"
+    "url": "git+https://github.com/vidavidorra/github-action-renovate.git"
   },
-  "keywords": [
-    "github",
-    "actions",
-    "webpagetest",
-    "speed",
-    "performance",
-    "web",
-    "performance"
-  ],
-  "author": "Jacob Cofman",
-  "license": "MIT",
+  "author": "Jeroen de Bruijn",
+  "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/JCofman/webPagetestAction/issues"
+    "url": "https://github.com/vidavidorra/github-action-renovate/issues"
   },
-  "homepage": "https://github.com/JCofman/webPagetestAction#readme",
-  "dependencies": {
-    "actions-toolkit": "^2.2.0",
-    "webpagetest": "^0.3.9"
+  "homepage": "https://github.com/vidavidorra/github-action-renovate#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "8.3.4",
+    "@typescript-eslint/eslint-plugin": "2.24.0",
+    "@typescript-eslint/parser": "2.24.0",
+    "chalk-cli": "4.1.0",
+    "concurrently": "5.1.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-json": "2.1.1",
+    "eslint-plugin-prettier": "3.1.2",
+    "husky": "4.2.3",
+    "lint-staged": "10.0.8",
+    "npm-run-all": "4.1.5",
+    "prettier": "1.19.1",
+    "standard-version": "7.1.0",
+    "typescript": "3.8.3"
   }
 }

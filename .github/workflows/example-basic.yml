@@ -1,0 +1,16 @@
+name: Basic example
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  basic-example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Renovate
+        uses: ./
+        with:
+          configurationFile: 'test/config.js'
