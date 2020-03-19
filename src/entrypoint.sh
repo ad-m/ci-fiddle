@@ -30,4 +30,4 @@ cat /usr/src/app/config.js
 # See the following link for this entrypoint in the renovate/renovate Docker
 # container.
 # https://github.com/renovatebot/renovate/blob/19.175.3/Dockerfile#L220
-RENOVATE_TOKEN="${TOKEN}" node /usr/src/app/dist/renovate.js -- --logLevel debug
+RENOVATE_TOKEN="${TOKEN}" node /usr/src/app/dist/renovate.js
