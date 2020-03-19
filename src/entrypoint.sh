@@ -13,6 +13,10 @@ fi
 
 cp "${CONFIGURATION_PATH}" '/usr/src/app/config.js'
 
+cat "${CONFIGURATION_PATH}"
+
+ls -la /usr/src/app
+
 # Run Renovate.
 #
 # This mimics the original entrypoint of the renovate/renovate Docker container.
