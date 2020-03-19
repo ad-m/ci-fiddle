@@ -8,4 +8,8 @@ inputs:
     default: 'src/config.js'
 runs:
   using: 'docker'
-  image: 'src/action.DockerFile'
+  image: DockerFile
+
+branding:
+  icon: file-text
+  color: gray-dark
