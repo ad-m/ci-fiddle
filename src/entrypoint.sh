@@ -3,8 +3,9 @@
 # Entrypoint for Docker.
 
 readonly CONFIGURATION_FILE="${1}"
-readonly CONFIGURATION_PATH="${GITHUB_WORKSPACE}/${CONFIGURATION_FILE}"
+readonly TOKEN="${2}"
 
+readonly CONFIGURATION_PATH="${GITHUB_WORKSPACE}/${CONFIGURATION_FILE}"
 if [[ ! -f "${CONFIGURATION_PATH}" ]]; then
   echo "ERROR: Couldn't find file ${CONFIGURATION_PATH}" 1>&2
   exit 1
@@ -18,4 +19,4 @@ cp "${CONFIGURATION_PATH}" '/usr/src/app/config.js'
 # See the following link for this entrypoint in the renovate/renovate Docker
 # container.
 # https://github.com/renovatebot/renovate/blob/19.175.3/Dockerfile#L220
-node /usr/src/app/dist/renovate.js
+RENOVATE_TOKEN="${TOKEN}" node /usr/src/app/dist/renovate.js

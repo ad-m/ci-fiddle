@@ -14,3 +14,4 @@ jobs:
         uses: ./
         with:
           configurationFile: 'test/config.js'
+          token: ${{ secrets.GITHUB_TOKEN }}
