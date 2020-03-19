@@ -11,18 +11,7 @@ if [[ ! -f "${CONFIGURATION_PATH}" ]]; then
   exit 1
 fi
 
-echo 'config:'
-cat /usr/src/app/config.js
-
 cp "${CONFIGURATION_PATH}" '/usr/src/app/config.js'
-
-cat "${CONFIGURATION_PATH}"
-
-ls -la /usr/src/app
-
-cat /usr/src/app/config.js
-
-
 
 # Run Renovate.
 #
