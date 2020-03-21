@@ -50,10 +50,10 @@ jobs:
           tag_name: v${{ steps.determine_version.outputs.VERSION }}
           release_name: v${{ steps.determine_version.outputs.VERSION }}
           body: |
-            [Changelog](https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md#${{ steps.determine_version.outputs.VERSION }})
-        # uses: ad-m/github-push-action@v0.5.0
-        # with:
-        #   github_token: ${{ secrets.GITHUB_TOKEN }}
+            See the [🔗 changelog](
+              https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md#${{ steps.determine_version.outputs.VERSION }}
+            )
+            for the changes included in this release.
   prevent_failed_status:
     name: Prevent failed status when skipped
     runs-on: ubuntu-latest
