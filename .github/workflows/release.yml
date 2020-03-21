@@ -42,7 +42,7 @@ jobs:
         run: |
           readonly MESSAGE="${{ env.COMMIT_MESSAGE }}"
           if [[ "${MESSAGE: -11: -1}" == 'ci release' ]]; then
-            echo "::set-env name=NEXT_VERSION::$(next-standard-version)"
+            echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
             npx --no-install standard-version
           else
             readonly RELEASE_TYPE="${MESSAGE: -6: -1}"
