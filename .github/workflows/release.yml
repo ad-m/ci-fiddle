@@ -25,20 +25,28 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install project
         run: npm ci
-      - name: Release as major
-        if: endsWith(github.event.commits[0].message, '[ci release][major]')
-        run: npx --no-install standard-version --release-as major
-      - name: Release as minor
-        if: endsWith(github.event.commits[0].message, '[ci release][minor]')
-        run: npx --no-install standard-version --release-as minor
-      - name: Release as patch
-        if: endsWith(github.event.commits[0].message, '[ci release][patch]')
-        run: npx --no-install standard-version --release-as patch
       - name: Release
-        if: endsWith(github.event.commits[0].message, '[ci release]')
+        env:
+          message: ${{ github.event.commits[0].message }}
         run: |
-          echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
-          npx --no-install standard-version
+          release_type='default'
+          if [[ endsWith(${{ env.message }}, '[ci release][major]') == 'true' ]]; then
+            release_type='major'
+            echo "Type: ${release_type}"
+          elif [[ endsWith(${{ env.message }}, '[ci release][minor]') == 'true' ]]; then
+            release_type='minor'
+            echo "Typem: ${release_type}"
+          elif [[ endsWith(${{ env.message }}, '[ci release][patch]') == 'true' ]]; then
+            release_type='patch'
+            echo "Typep: ${release_type}"
+          fi
+
+          if [[ "${release_type}" == 'default' ]]; then
+            echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
+            npx --no-install standard-version
+          else
+            npx --no-install standard-version --release-as "${release_type}"
+          fi
       - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
