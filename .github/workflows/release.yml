@@ -7,7 +7,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      MESSAGE: ${{ github.event.commits[0].message }}
+      COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
     if: |
       startsWith(github.event.commits[0].message,
           'chore(release): trigger release process [ci release]')
@@ -31,32 +31,23 @@ jobs:
         run: npm ci
       - name: Validate release type
         if: |
-          !(endsWith(env.MESSAGE, '[ci release]') ||
-            endsWith(env.MESSAGE, '[ci release][major]') ||
-            endsWith(env.MESSAGE, '[ci release][minor]') ||
-            endsWith(env.MESSAGE, '[ci release][patch]'))
+          !(endsWith(env.COMMIT_MESSAGE, '[ci release]') ||
+            endsWith(env.COMMIT_MESSAGE, '[ci release][major]') ||
+            endsWith(env.COMMIT_MESSAGE, '[ci release][minor]') ||
+            endsWith(env.COMMIT_MESSAGE, '[ci release][patch]'))
         run: |
           echo 'Could not determine release type based on message'
           exit 1
-      - name: Release as
-        if: |
-          endsWith(env.MESSAGE, '[ci release][major]') ||
-          endsWith(env.MESSAGE, '[ci release][minor]') ||
-          endsWith(env.MESSAGE, '[ci release][patch]')
-        run: |
-          echo "Message: '${{ env.MESSAGE }}'"
-          readonly COMMIT_MESSAGE="${{ env.MESSAGE }}"
-          echo "Message: '${COMMIT_MESSAGE}'"
-
-          readonly RELEASE_TYPE="${COMMIT_MESSAGE: -6: -1}"
-          # readonly RELEASE_TYPE="minor"
-          echo "::set-env name=NEXT_VERSION::2.99.0"
-          npx --no-install standard-version --release-as "${RELEASE_TYPE}"
       - name: Release
-        if: endsWith(github.event.commits[0].message, '[ci release]')
         run: |
-          echo "::set-env name=NEXT_VERSION::$(next-standard-version)"
-          npx --no-install standard-version
+          readonly MESSAGE="${{ env.COMMIT_MESSAGE }}"
+          if [[ "${MESSAGE: -11: -1" == 'ci release']]; then
+            echo "::set-env name=NEXT_VERSION::$(next-standard-version)"
+            npx --no-install standard-version
+            else
+            readonly RELEASE_TYPE="${MESSAGE: -6: -1}"
+            npx --no-install standard-version --release-as "${RELEASE_TYPE}"
+          fi
       - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
