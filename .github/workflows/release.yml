@@ -7,6 +7,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     if: "startsWith(github.event.commits[0].message, 'chore(release): trigger release process [ci release]')"
+    env:
+      NEXT_VERSION: ''
     steps:
       - name: Checkout
         uses: actions/checkout@v2
