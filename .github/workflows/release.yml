@@ -30,13 +30,13 @@ jobs:
           message: ${{ github.event.commits[0].message }}
         run: |
           release_type='default'
-          if [[ endsWith(${{ env.message }}, '[ci release][major]') == 'true' ]]; then
+          if [[ endsWith('${{ env.message }}', '[ci release][major]') == 'true' ]]; then
             release_type='major'
             echo "Type: ${release_type}"
-          elif [[ endsWith(${{ env.message }}, '[ci release][minor]') == 'true' ]]; then
+          elif [[ endsWith('${{ env.message }}', '[ci release][minor]') == 'true' ]]; then
             release_type='minor'
             echo "Typem: ${release_type}"
-          elif [[ endsWith(${{ env.message }}, '[ci release][patch]') == 'true' ]]; then
+          elif [[ endsWith('${{ env.message }}', '[ci release][patch]') == 'true' ]]; then
             release_type='patch'
             echo "Typep: ${release_type}"
           fi
