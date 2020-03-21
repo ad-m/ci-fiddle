@@ -7,8 +7,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
     if: "startsWith(github.event.commits[0].message, 'chore(release): trigger release process [ci release]')"
-    env:
-      NEXT_VERSION: ''
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -33,8 +31,8 @@ jobs:
       - name: Release as major
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
         run: |
-          npx --no-install standard-version --release-as major
           echo "::set-env name=NEXT_VERSION::1.99.0"
+          npx --no-install standard-version --release-as major
       - name: Release as minor
         if: endsWith(github.event.commits[0].message, '[ci release][minor]')
         run: npx --no-install standard-version --release-as minor
@@ -44,9 +42,8 @@ jobs:
       - name: Release
         if: endsWith(github.event.commits[0].message, '[ci release]')
         run: |
-          npx --no-install standard-version
           echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
-          echo "echoed env: $env.NEXT_VERSION"
+          npx --no-install standard-version
       - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
