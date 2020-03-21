@@ -49,6 +49,7 @@ jobs:
           fi
       # - name: Release
       #   if:
+
       #   env:
       #     MESSAGE: ${{ github.event.commits[0].message }}
       - name: Publish release
