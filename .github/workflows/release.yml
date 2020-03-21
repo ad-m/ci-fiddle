@@ -29,7 +29,15 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install project
         run: npm ci
-      # - name: Validate release type
+      - name: Validate release type
+        if: |
+          !(endsWith(env.MESSAGE, '[ci release]') ||
+            endsWith(env.MESSAGE, '[ci release][major]') ||
+            endsWith(env.MESSAGE, '[ci release][minor]') ||
+            endsWith(env.MESSAGE, '[ci release][patch]'))
+        run: |
+          echo 'Could not determine release type based on message'
+          exit 1
       - name: Release as
         if: |
           endsWith(env.MESSAGE, '[ci release][major]') ||
@@ -37,6 +45,8 @@ jobs:
           endsWith(env.MESSAGE, '[ci release][patch]')
         run: |
           echo "Message: '${{ env.MESSAGE }}'"
+          readonly COMMIT_MESSAGE="${{ env.MESSAGE }}"
+          echo "Message: '${COMMIT_MESSAGE}'"
 
           readonly RELEASE_TYPE="${env.MESSAGE: -6: -1}"
           readonly RELEASE_TYPE="minor"
