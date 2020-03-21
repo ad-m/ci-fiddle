@@ -42,6 +42,7 @@ jobs:
         run: |
           npx --no-install standard-version
           echo Step output: ${{ steps.determine_version.outputs.VERSION }}
+          git push --follow-tags
       - name: Publish release
         uses: actions/create-release@v1.0.1
         env:
