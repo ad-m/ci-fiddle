@@ -25,15 +25,14 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install project
         run: npm ci
-      - name: Get next release version
-        id: next_version
-        run: echo "::set-output name=version::$(npm run release:version --silent)"
+      # - name: Get next release version
+      #   id: next_version
+      #   run: echo "::set-output name=version::$(npm run release:version --silent)"
       - name: Release as major
-        id: next_version
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
         run: |
           npx --no-install standard-version --release-as major
-          echo "::set-output name=version::2.0.0"
+          echo "::set-env name=NEXT_VERSION::2.0.0"
       - name: Release as minor
         if: endsWith(github.event.commits[0].message, '[ci release][minor]')
         run: npx --no-install standard-version --release-as minor
@@ -41,11 +40,10 @@ jobs:
         if: endsWith(github.event.commits[0].message, '[ci release][patch]')
         run: npx --no-install standard-version --release-as patch
       - name: Release
-        id: next_version
         if: endsWith(github.event.commits[0].message, '[ci release]')
         run: |
           npx --no-install standard-version
-          echo "::set-output name=version::$(npm run release:version --silent)"
+          echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
       - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
@@ -53,8 +51,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.next_version.outputs.version }}
-          release_name: v${{ steps.next_version.outputs.version }}
+          tag_name: v${NEXT_VERSION}
+          release_name: v${NEXT_VERSION}
           body: |
             See the the [changelog](
               https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md
