@@ -38,8 +38,8 @@ jobs:
           endsWith(env.MESSAGE, '[ci release][minor]') ||
           endsWith(env.MESSAGE, '[ci release][patch]')
         run: |
-          echo "Message: '${env.MESSAGE}'"
-          readonly RELEASE_TYPE="${env.MESSAGE: -6: -1}"
+          echo "Message: '${{ env.MESSAGE }}'"
+          readonly RELEASE_TYPE="${{ env.MESSAGE: -6: -1 }}"
           echo "::set-env name=NEXT_VERSION::2.99.0"
           npx --no-install standard-version --release-as "${RELEASE_TYPE}"
       - name: Release
