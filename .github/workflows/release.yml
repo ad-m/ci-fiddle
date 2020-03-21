@@ -32,7 +32,7 @@ jobs:
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
         run: |
           npx --no-install standard-version --release-as major
-          echo "::set-env name=NEXT_VERSION::2.0.0"
+          echo "::set-env name=NEXT_VERSION::1.99.0"
       - name: Release as minor
         if: endsWith(github.event.commits[0].message, '[ci release][minor]')
         run: npx --no-install standard-version --release-as minor
@@ -44,6 +44,7 @@ jobs:
         run: |
           npx --no-install standard-version
           echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
+          echo "echoed env: $NEXT_VERSION"
       - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
