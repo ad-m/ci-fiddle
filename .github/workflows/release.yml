@@ -25,18 +25,18 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install project
         run: npm ci
-      - name: Release
+      - name: Release as
         env:
           message: ${{ github.event.commits[0].message }}
         run: |
           release_type='default'
-          if [[ ${{ endsWith('${{ env.message }}', '[ci release][major]') }} == 'true' ]]; then
+          if [[ "endsWith('${{ env.message }}', '[ci release][major]')" == 'true' ]]; then
             release_type='major'
             echo "Type: ${release_type}"
-          elif [[ ${{ endsWith('${{ env.message }}', '[ci release][minor]') }} == 'true' ]]; then
+          elif [[ "endsWith('${{ env.message }}', '[ci release][minor]')" == 'true' ]]; then
             release_type='minor'
             echo "Typem: ${release_type}"
-          elif [[ ${{ endsWith('${{ env.message }}', '[ci release][patch]') }} == 'true' ]]; then
+          elif [[ "endsWith('${{ env.message }}', '[ci release][patch]')" == 'true' ]]; then
             release_type='patch'
             echo "Typep: ${release_type}"
           fi
@@ -47,6 +47,10 @@ jobs:
           else
             npx --no-install standard-version --release-as "${release_type}"
           fi
+      # - name: Release
+      #   if:
+      #   env:
+      #     MESSAGE: ${{ github.event.commits[0].message }}
       - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
