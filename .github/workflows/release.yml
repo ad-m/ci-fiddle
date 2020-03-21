@@ -49,7 +49,7 @@ jobs:
           echo "Message: '${COMMIT_MESSAGE}'"
 
           readonly RELEASE_TYPE="${COMMIT_MESSAGE: -6: -1}"
-          readonly RELEASE_TYPE="minor"
+          # readonly RELEASE_TYPE="minor"
           echo "::set-env name=NEXT_VERSION::2.99.0"
           npx --no-install standard-version --release-as "${RELEASE_TYPE}"
       - name: Release
