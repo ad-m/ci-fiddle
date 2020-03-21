@@ -29,8 +29,11 @@ jobs:
         id: next_version
         run: echo "::set-output name=version::$(npm run release:version --silent)"
       - name: Release as major
+        id: next_version
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
-        run: npx --no-install standard-version --release-as major
+        run: |
+          npx --no-install standard-version --release-as major
+          echo "::set-output name=version::2.0.0"
       - name: Release as minor
         if: endsWith(github.event.commits[0].message, '[ci release][minor]')
         run: npx --no-install standard-version --release-as minor
@@ -38,8 +41,11 @@ jobs:
         if: endsWith(github.event.commits[0].message, '[ci release][patch]')
         run: npx --no-install standard-version --release-as patch
       - name: Release
+        id: next_version
         if: endsWith(github.event.commits[0].message, '[ci release]')
-        run: npx --no-install standard-version
+        run: |
+          npx --no-install standard-version
+          echo "::set-output name=version::$(npm run release:version --silent)"
       - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
