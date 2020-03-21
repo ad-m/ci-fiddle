@@ -36,7 +36,7 @@ jobs:
             endsWith(env.COMMIT_MESSAGE, '[ci release][minor]') ||
             endsWith(env.COMMIT_MESSAGE, '[ci release][patch]'))
         run: |
-          echo 'Could not determine a valid release type from the commit message.'
+          echo 'Could not detect a valid release type in the commit message.'
           exit 1
       - name: Release
         run: |
