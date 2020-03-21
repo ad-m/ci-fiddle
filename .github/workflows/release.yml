@@ -25,14 +25,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install project
         run: npm ci
-      # - name: Get next release version
-      #   id: next_version
-      #   run: echo "::set-output name=version::$(npm run release:version --silent)"
       - name: Release as major
         if: endsWith(github.event.commits[0].message, '[ci release][major]')
-        run: |
-          echo "::set-env name=NEXT_VERSION::1.99.0"
-          npx --no-install standard-version --release-as major
+        run: npx --no-install standard-version --release-as major
       - name: Release as minor
         if: endsWith(github.event.commits[0].message, '[ci release][minor]')
         run: npx --no-install standard-version --release-as minor
