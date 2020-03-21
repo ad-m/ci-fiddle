@@ -46,7 +46,7 @@ jobs:
         run: |
           npx --no-install standard-version
           echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
-          echo "echoed env: $NEXT_VERSION"
+          echo "echoed env: $env.NEXT_VERSION"
       - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
@@ -54,8 +54,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v$NEXT_VERSION
-          release_name: v$NEXT_VERSION
+          tag_name: v$env.NEXT_VERSION
+          release_name: v$env.NEXT_VERSION
           body: |
             See the the [changelog](
               https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md
