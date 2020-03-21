@@ -41,10 +41,10 @@ jobs:
       - name: Release
         run: |
           readonly MESSAGE="${{ env.COMMIT_MESSAGE }}"
-          if [[ "${MESSAGE: -11: -1" == 'ci release']]; then
+          if [[ "${MESSAGE: -11: -1}" == 'ci release']]; then
             echo "::set-env name=NEXT_VERSION::$(next-standard-version)"
             npx --no-install standard-version
-            else
+          else
             readonly RELEASE_TYPE="${MESSAGE: -6: -1}"
             npx --no-install standard-version --release-as "${RELEASE_TYPE}"
           fi
