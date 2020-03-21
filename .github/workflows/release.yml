@@ -32,13 +32,13 @@ jobs:
       #     message: ${{ github.event.commits[0].message }}
       - name: Release as
         env:
-          message: ${{ github.event.commits[0].message }}
+          MESSAGE: ${{ github.event.commits[0].message }}
         if: |
-          endsWith(env.message, '[ci release][major]') ||
-          endsWith(env.message, '[ci release][minor]') ||
-          endsWith(env.message, '[ci release][patch]')
+          endsWith(env.MESSAGE, '[ci release][major]') ||
+          endsWith(env.MESSAGE, '[ci release][minor]') ||
+          endsWith(env.MESSAGE, '[ci release][patch]')
         run: |
-          readonly RELEASE_TYPE="${env.message:-6:-1}"
+          readonly RELEASE_TYPE="${env.MESSAGE: -6: -1}"
           echo "::set-env name=NEXT_VERSION::2.99.0"
           npx --no-install standard-version --release-as "${RELEASE_TYPE}"
       - name: Release
