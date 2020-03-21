@@ -36,12 +36,12 @@ jobs:
             endsWith(env.COMMIT_MESSAGE, '[ci release][minor]') ||
             endsWith(env.COMMIT_MESSAGE, '[ci release][patch]'))
         run: |
-          echo 'Could not determine release type based on message'
+          echo 'Could not determine a valid release type from the commit message.'
           exit 1
       - name: Release
         run: |
           readonly MESSAGE="${{ env.COMMIT_MESSAGE }}"
-          if [[ "${MESSAGE: -11: -1}" == 'ci release']]; then
+          if [[ "${MESSAGE: -11: -1}" == 'ci release' ]]; then
             echo "::set-env name=NEXT_VERSION::$(next-standard-version)"
             npx --no-install standard-version
           else
