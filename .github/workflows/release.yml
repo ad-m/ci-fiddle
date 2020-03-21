@@ -9,7 +9,7 @@ jobs:
     env:
       MESSAGE: ${{ github.event.commits[0].message }}
     if: |
-      startsWith(MESSAGE,
+      startsWith(${{ env.MESSAGE }},
           'chore(release): trigger release process [ci release]')
     steps:
       - name: Checkout
