@@ -9,12 +9,10 @@ jobs:
     env:
       COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
     if: |
-      contains([
-        'chore(release): trigger release process [ci release]',
-        'chore(release): trigger release process [ci release][major]',
-        'chore(release): trigger release process [ci release][minor]',
-        'chore(release): trigger release process [ci release][patch]',
-      ], github.event.commits[0].message)
+      github.event.commits[0].message == 'chore(release): trigger release process [ci release]' ||
+      github.event.commits[0].message == 'chore(release): trigger release process [ci release][major]' ||
+      github.event.commits[0].message == 'chore(release): trigger release process [ci release][minor]' ||
+      github.event.commits[0].message == 'chore(release): trigger release process [ci release][patch]'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
