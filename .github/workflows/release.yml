@@ -6,8 +6,6 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
-      COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
     if: |
       github.event.commits[0].message == 'chore(release): trigger release process [ci release]' ||
       github.event.commits[0].message == 'chore(release): trigger release process [ci release][major]' ||
@@ -33,7 +31,7 @@ jobs:
         run: npm ci
       - name: Release
         run: |
-          readonly MESSAGE="${{ env.COMMIT_MESSAGE }}"
+          readonly MESSAGE="${{ github.event.commits[0].message }}"
           if [[ "${MESSAGE: -11: -1}" == 'ci release' ]]; then
             echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
             npx --no-install standard-version
