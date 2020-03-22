@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/vidavidorra/github-action-renovate/compare/v4.0.1...v5.0.0) (2020-03-22)
+
+### ⚠ BREAKING CHANGES
+
+- add something, yay
+
+### Features
+
+- add something, yay ([2501e5d](https://github.com/vidavidorra/github-action-renovate/commit/2501e5d4ea3e51de6ff2c48acd38da3467ace22e))
+
 ### [4.0.1](https://github.com/vidavidorra/github-action-renovate/compare/v4.0.0...v4.0.1) (2020-03-22)
 
 ### Features
