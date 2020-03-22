@@ -9,7 +9,7 @@ jobs:
     env:
       COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
     if: |
-      github.event.commits[0].message == 'chore(release): trigger release process [ci release]' ||
+      COMMIT_MESSAGE == 'chore(release): trigger release process [ci release]' ||
       github.event.commits[0].message == 'chore(release): trigger release process [ci release][major]' ||
       github.event.commits[0].message == 'chore(release): trigger release process [ci release][minor]' ||
       github.event.commits[0].message == 'chore(release): trigger release process [ci release][patch]'
