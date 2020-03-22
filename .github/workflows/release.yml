@@ -39,7 +39,10 @@ jobs:
             npx --no-install standard-version
           else
             readonly RELEASE_TYPE="${MESSAGE: -6: -1}"
-            npx --no-install standard-version --releaseAs "${RELEASE_TYPE}"
+            echo "::set-env name=NEXT_VERSION::$(
+                npm run release:version --silent -- --releaseAs "${RELEASE_TYPE}"
+                )"
+            npx --no-install standard-version --release-as "${RELEASE_TYPE}"
           fi
       - name: Publish release
         run: git push --follow-tags
@@ -60,5 +63,5 @@ jobs:
     steps:
       - name: Prevent failed status when skipped
         run: |
-          echo "Run this job to prevent the workflow status from showing as"
+          echo "Run this job to prevent the workflow status from showing as" \
                "failed when all other jobs are skipped."

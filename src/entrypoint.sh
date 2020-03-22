@@ -16,6 +16,12 @@ readonly MESSAGE='[ci release][major]'
 readonly RELEASE_TYPE="${MESSAGE: -6: -1}"
 echo $RELEASE_TYPE
 
+echo "::set-env name=NEXT_VERSION::$(
+    npm run release:version --silent -- --releaseAs "${RELEASE_TYPE}"
+    )"
+
+echo "Run this job to prevent the workflow status from showing as" \
+      "failed when all other jobs are skipped."
 
 # readonly WORKDIR='/usr/src/app'
 # # Account for the WORKDIR entry of the renovate/renovate Docker container. See
