@@ -27,10 +27,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install project
         run: npm ci
-      - name: Build (artefacts)
-        run: |
-          npm run build
-          npm link
       - name: Release
         run: |
           echo "::set-env name=NEXT_VERSION::$(next-standard-version)"
