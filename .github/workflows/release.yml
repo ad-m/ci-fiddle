@@ -6,11 +6,9 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
-      COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
     if: |
-      startsWith(github.event.commits[0].message,
-          'chore(release): trigger release process [ci release]')
+      github.event.commits[0].message ==
+          'chore(release): trigger release process [ci release]'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,26 +27,15 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install project
         run: npm ci
-      - name: Validate release type
-        if: |
-          !(endsWith(env.COMMIT_MESSAGE, '[ci release]') ||
-            endsWith(env.COMMIT_MESSAGE, '[ci release][major]') ||
-            endsWith(env.COMMIT_MESSAGE, '[ci release][minor]') ||
-            endsWith(env.COMMIT_MESSAGE, '[ci release][patch]'))
+      - name: Build (artefacts)
         run: |
-          echo 'Could not detect a valid release type in the commit message.'
-          exit 1
+          npm run build
+          npm link
       - name: Release
         run: |
-          readonly MESSAGE="${{ env.COMMIT_MESSAGE }}"
-          if [[ "${MESSAGE: -11: -1}" == 'ci release' ]]; then
-            echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
-            npx --no-install standard-version
-          else
-            readonly RELEASE_TYPE="${MESSAGE: -6: -1}"
-            npx --no-install standard-version --release-as "${RELEASE_TYPE}"
-          fi
-      - name: Publish release
+          echo "::set-env name=NEXT_VERSION::$(next-standard-version)"
+          npx --no-install standard-version
+      - name: Publish release artefacts
         run: git push --follow-tags
       - name: Publish GitHub release
         uses: actions/create-release@v1.0.1
