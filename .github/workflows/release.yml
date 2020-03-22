@@ -6,9 +6,15 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
     if: |
-      github.event.commits[0].message ==
-          'chore(release): trigger release process [ci release]'
+      contains([
+        'chore(release): trigger release process [ci release]',
+        'chore(release): trigger release process [ci release][major]',
+        'chore(release): trigger release process [ci release][minor]',
+        'chore(release): trigger release process [ci release][patch]',
+      ], github.event.commits[0].message)
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,9 +35,15 @@ jobs:
         run: npm ci
       - name: Release
         run: |
-          echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
-          npx --no-install standard-version
-      - name: Publish release artefacts
+          readonly MESSAGE="${{ env.COMMIT_MESSAGE }}"
+          if [[ "${MESSAGE: -11: -1}" == 'ci release' ]]; then
+            echo "::set-env name=NEXT_VERSION::$(npm run release:version --silent)"
+            npx --no-install standard-version
+          else
+            readonly RELEASE_TYPE="${MESSAGE: -6: -1}"
+            npx --no-install standard-version --releaseAs "${RELEASE_TYPE}"
+          fi
+      - name: Publish release
         run: git push --follow-tags
       - name: Publish GitHub release
         uses: actions/create-release@v1.0.1
