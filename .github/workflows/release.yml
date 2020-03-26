@@ -17,11 +17,11 @@ jobs:
       - name: Install project
         env:
           GPR_AUTH_TOKEN: ${{ secrets.GPR_READ_TOKEN }}
+          NPM_CONFIG_FILE: '~/.npmrc'
         run: |
-          echo '//npm.pkg.github.com/:_authToken=${GPR_AUTH_TOKEN}' >> ~/.npmrc
-          ls -la ~/
-          echo $HOME
-          cat ~/.npmrc || echo fail
+          echo '//npm.pkg.github.com/:_authToken=${GPR_AUTH_TOKEN}' \
+              > "${NPM_CONFIG_FILE}"
           npm ci
+          rm "${NPM_CONFIG_FILE}"
       - name: Lint
         run: npm run lint
