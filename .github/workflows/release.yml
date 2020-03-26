@@ -20,7 +20,10 @@ jobs:
           NPM_CONFIG_FILE: ~/.npmrc
         run: |
           echo 'start'
-          touch ${NPM_CONFIG_FILE}
+          touch $NPM_CONFIG_FILE
+          echo 'start2'
+          touch ~/.npmrc
+          echo 'start3'
           echo '//npm.pkg.github.com/:_authToken=${GPR_AUTH_TOKEN}' > ${NPM_CONFIG_FILE}
           echo 'created config'
           npm ci
