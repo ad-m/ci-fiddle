@@ -17,17 +17,9 @@ jobs:
       - name: Install project
         env:
           GPR_AUTH_TOKEN: ${{ secrets.GPR_READ_TOKEN }}
-          NPM_CONFIG_FILE: ~/.npmrc
         run: |
-          echo 'start'
-          # touch $NPM_CONFIG_FILE
-          echo 'start2'
-          touch ~/.npmrc
-          echo 'start3'
-          echo '//npm.pkg.github.com/:_authToken=${GPR_AUTH_TOKEN}' > ${NPM_CONFIG_FILE}
-          echo 'created config'
+          echo '//npm.pkg.github.com/:_authToken=${GPR_AUTH_TOKEN}' > ~/.npmrc
           npm ci
-          echo 'remove'
-          rm ${NPM_CONFIG_FILE}
+          rm ~/.npmrc
       - name: Lint
         run: npm run lint
