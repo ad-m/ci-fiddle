@@ -30,6 +30,7 @@
     "@commitlint/config-conventional": "8.3.4",
     "@typescript-eslint/eslint-plugin": "2.24.0",
     "@typescript-eslint/parser": "2.24.0",
+    "@withthegrid/platform-sdk-private": "^10.11.1",
     "chalk-cli": "4.1.0",
     "concurrently": "5.1.0",
     "eslint": "6.8.0",
