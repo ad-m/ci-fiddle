@@ -19,9 +19,11 @@ jobs:
           GPR_AUTH_TOKEN: ${{ secrets.GPR_READ_TOKEN }}
           NPM_CONFIG_FILE: '~/.npmrc'
         run: |
-          echo '//npm.pkg.github.com/:_authToken=${GPR_AUTH_TOKEN}' \
-              > "${NPM_CONFIG_FILE}"
+          echo 'start'
+          echo '//npm.pkg.github.com/:_authToken=${GPR_AUTH_TOKEN}' > "${NPM_CONFIG_FILE}"
+          echo 'created config'
           npm ci
+          echo 'remove'
           rm "${NPM_CONFIG_FILE}"
       - name: Lint
         run: npm run lint
